@@ -3,15 +3,23 @@ html {
 }
 
 body {
-    background: url('/media/skateboard-homepage.jpg') no-repeat center center fixed;
-    background-size: cover;
     height: calc(100vh - 164px);
     color: #555;
     font-family: 'Kanit', sans-serif;
 }
 
+.hero-image {
+    background: url('/media/skateboard-homepage.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
 h1 {
     font-family: 'Russo One', sans-serif;
+}
+
+.thick-line {
+    border: 5px solid black;
+    border-radius: 5px;
 }
 
 /* from Bulma */
@@ -25,6 +33,11 @@ h1 {
 
 .logo-font {
     text-transform: uppercase;
+    color: #471d5c;
+}
+
+.text-white {
+    color: white;
 }
 
 .main-logo-link {
@@ -32,14 +45,19 @@ h1 {
 }
 
 .shop-now-button {
-    background: black;
-    color: white;
+    background: #ffd51c;
+    color: black;
     min-width: 260px;
 }
 
 .btn-black {
     background: black;
     color: white;
+}
+
+.btn-yellow {
+    background: #ffd51c;
+    color: black;
 }
 
 .shop-now-button:hover,
@@ -56,8 +74,16 @@ h1 {
     color: #000 !important;
 }
 
+.brand-purple {
+    color: #471d5c;
+}
+
 .border-black {
     border: 1px solid black !important;
+}
+
+.bg-black {
+    background: #000 !important;
 }
 
 /* -------------------------------- Media Queries */
