@@ -94,6 +94,39 @@ h1 {
     margin: 0;
 }
 
+.footer-heading {
+    text-transform: uppercase;
+    color: white;
+    margin-left: 50px;
+    padding-top: 30px;
+}
+
+#footer {
+    background-color: #000;
+    height: 100%;
+    width: 100%;
+}
+
+.social-icons {
+    margin-left: 50px;
+    padding-top: 20px;
+}
+
+.icon-style {
+    padding-left: 8px;
+    font-size: 1.8rem;
+}
+
+/*..................................Mailchimp form styles */
+
+#mc_embed_signup {
+    background: #fff;
+    false;
+    clear: left;
+    font: 14px Helvetica, Arial, sans-serif;
+    width: 500px;
+}
+
 /* -------------------------------- Media Queries */
 
 /* Slightly larger container on xl screens */
