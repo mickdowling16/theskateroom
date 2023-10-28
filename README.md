@@ -73,4 +73,11 @@ My user stories are split into epics, displayed below and also mapped out using 
 
 # Design
 
-he design for this project is based off of skatepark culture and brands such as Converse, Vans and DC. The asthetic I'm going for is a grunge and punk rock vibe. The inspiration for this is from my childhood playing Tony Hawk games. 
+The design for this project is based off of skatepark culture and brands such as Converse, Vans and DC. The design I'm going for is black and white with thick black font and heavy lines used throughout. The font im using for heading is Russo One and the font for the body is Kanit. I got these fonts from Google fonts. I use accents of yellow throughout the website to add a bit of colour where needed but mainly my site is going to be black and white.
+
+# Features
+
+My online store contains plenty of features to benefit my users and make my site user friendly. The landing page contains the main navigation and user menus along with a call to action to visit the store. Further down on the homepage is where the upcoming events are displayed. This is important to be on the homepage as my website isn't primarily a online store it is a community for skater to get news and updates on events along with being able to update their skating setu  in the store.
+
+### Navigation
+
