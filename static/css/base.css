@@ -145,12 +145,14 @@ h1 {
 /*..................................Mailchimp form styles */
 
 #mc_embed_signup {
-    background: #fff;
+    background: black;
     false;
     clear: left;
     font: 14px Helvetica, Arial, sans-serif;
     width: 500px;
+    color: white;
 }
+
 
 /* -------------------------------- Media Queries */
 
