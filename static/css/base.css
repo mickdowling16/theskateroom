@@ -17,9 +17,18 @@ h1 {
     font-family: 'Russo One', sans-serif;
 }
 
+.page-top-header {
+    margin-top: 80px;
+}
+
 .thick-line {
     border: 5px solid black;
     border-radius: 5px;
+}
+
+.thin-line {
+    border: 3px solid black;
+    border-radius: 3px;
 }
 
 /* from Bulma */
@@ -33,7 +42,8 @@ h1 {
 
 .logo-font {
     text-transform: uppercase;
-    color: #471d5c;
+    color: black;
+    font-weight: 900;
 }
 
 .text-white {
@@ -115,6 +125,21 @@ h1 {
 .icon-style {
     padding-left: 8px;
     font-size: 1.8rem;
+}
+
+.overlay {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background: white;
+    z-index: -1;
+}
+
+.img-size {
+    height: 300px;
+    width: 250px;
 }
 
 /*..................................Mailchimp form styles */
