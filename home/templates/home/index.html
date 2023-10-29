@@ -10,14 +10,14 @@
 {% endblock %}
 
 {% block content %}
-<div class="container h-100">
-    <div class="hero-image row h-100">
-        <div class="col-7 col-md-6 my-auto">
-            <h1 class="display-4 logo-font text-black">
+<div class="container push-down-content">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="display-4 logo-font text-black text-center">
                 Welcome to The Skate Room.
             </h1>
             <hr class="thick-line">
-            <div class="my-5">
+            <div class="text-center my-5">
                 <h4>
                     <a href="{% url 'products' %}" class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3">Shop Now</a>
                 </h4>
@@ -25,19 +25,34 @@
         </div>
     </div>
 </div>
-<div class="container h-100">
-    <div class="row h-100">
-        <div class="col-7 col-md-6 my-auto">
-            <h1 class="display-4 logo-font text-black">
+<div class="container homepage-events-div">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="display-4 logo-font text-black text-center">
                 Upcoming Skate Events
             </h1>
             <hr class="thick-line">
-            <div class="my-5">
+            <div class="text-center my-5">
                 <h4>
-                    <a href="" class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3">Take Me There</a>
+                    <a href="{% url 'events:event_list' %}" class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3">Take Me to Events</a>
                 </h4>
             </div>
         </div>
     </div>
+    <div class="row">
+        {% for event in upcoming_events %}
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img src="{{ event.image.url }}" alt="{{ event.title }}" class="card-img-top img-thumbnail">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ event.title }}</h5>
+                        <p class="card-text">Date: {{ event.date }}</p>
+                        <a href="{% url 'events:event_detail' event.id %}" class="btn btn-primary">Details</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 </div>
+
 {% endblock %}
