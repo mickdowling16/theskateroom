@@ -32,11 +32,6 @@
                 Upcoming Skate Events
             </h1>
             <hr class="thick-line">
-            <div class="text-center my-5">
-                <h4>
-                    <a href="{% url 'events:event_list' %}" class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3">Take Me to Events</a>
-                </h4>
-            </div>
         </div>
     </div>
     <div class="row">
@@ -52,6 +47,11 @@
                 </div>
             </div>
         {% endfor %}
+        <div class="text-center my-5">
+                <h4>
+                    <a href="{% url 'events:event_list' %}" class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3">Take Me to Events</a>
+                </h4>
+            </div>
     </div>
 </div>
 
