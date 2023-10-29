@@ -147,6 +147,10 @@ h1 {
     margin-bottom: 100px;
 }
 
+.homepage-events-div {
+    height: 900px;
+}
+
 /*..................................Mailchimp form styles */
 
 #mc_embed_signup {
