@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container push-down-content">
+    <div class="card">
+        {% if event.image %}
+        <img src="{{ event.image.url }}" alt="{{ event.title }}" class="card-img-top">
+        {% endif %}
+        <div class="card-body">
+            <h5 class="card-title">{{ event.title }}</h5>
+            <p class="card-text">{{ event.description }}</p>
+            <p class="card-text">Date: {{ event.date }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
