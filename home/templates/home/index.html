@@ -42,12 +42,12 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ event.title }}</h5>
                         <p class="card-text">Date: {{ event.date }}</p>
-                        <a href="{% url 'events:event_detail' event.id %}" class="btn btn-primary">Details</a>
+                        <a href="{% url 'events:event_detail' event.id %}" class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3">Details</a>
                     </div>
                 </div>
             </div>
         {% endfor %}
-        <div class="text-center my-5">
+            <div class="homepage-btn text-center">
                 <h4>
                     <a href="{% url 'events:event_list' %}" class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3">Take Me to Events</a>
                 </h4>
