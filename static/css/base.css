@@ -31,6 +31,11 @@ h1 {
     border-radius: 3px;
 }
 
+.homepage-btn {
+    margin: 0 auto;
+    text-align: center;
+}
+
 /* from Bulma */
 .icon {
     align-items: center;
