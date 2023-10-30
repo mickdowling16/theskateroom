@@ -17,11 +17,10 @@
                 Apparel
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="clothing-link">
-                <a href="" class="dropdown-item">Hoodies</a>
-                <a href="" class="dropdown-item">Trousers</a>
-                <a href="" class="dropdown-item">T-Shirts</a>
-                <a href="" class="dropdown-item">Shoes</a>
-                <a href="" class="dropdown-item">All Clothing</a>
+                <a href="{% url 'products' %}?category=hoodies" class="dropdown-item">Hoodies</a>
+                <a href="{% url 'products' %}?category=trousers" class="dropdown-item">Trousers</a>
+                <a href="{% url 'products' %}?category=shoes" class="dropdown-item">Shoes</a>
+                <a href="{% url 'products' %}?category=hoodies,trousers,shoes" class="dropdown-item">All Clothing</a>
             </div>
         </li>
 
@@ -30,11 +29,10 @@
                 Skateboards
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="homeware-link">
-                <a href="" class="dropdown-item">Decks</a>
-                <a href="" class="dropdown-item">Trucks</a>
-                <a href="" class="dropdown-item">Wheels</a>
-                <a href="" class="dropdown-item">Accessories</a>
-                <a href="" class="dropdown-item">All Boards</a>
+                <a href="{% url 'products' %}?category=decks" class="dropdown-item">Decks</a>
+                <a href="{% url 'products' %}?category=trucks" class="dropdown-item">Trucks</a>
+                <a href="{% url 'products' %}?category=wheels" class="dropdown-item">Wheels</a>
+                <a href="{% url 'products' %}?category=decks,trucks,wheels" class="dropdown-item">All Boards</a>
             </div>
         </li>
 
@@ -43,7 +41,7 @@
                 Extra Skate
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="specials-link">
-                <a href="" class="dropdown-item">Upcoming Events</a>
+                <a href="{% url 'events:event_list' %}" class="dropdown-item">Upcoming Events</a>
                 <a href="" class="dropdown-item">Local Skate Parks</a>
                 <a href="" class="dropdown-item">Custom Boards</a>
                 <a href="" class="dropdown-item">Contact Us</a>
