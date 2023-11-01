@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from .forms import ContactForm 
+from .forms import ContactForm
 
 
 def contact(request):
-    return render(request, 'staticpages/contact.html', {})
+    form = ContactForm()
+    return render(request, '/workspaces/theskateroom/staticpages/templates/staticpages/contact.html', {'form': form})
