@@ -80,3 +80,41 @@ The design for this project is based off of skatepark culture and brands such as
 My online store contains plenty of features to benefit my users and make my site user friendly. The landing page contains the main navigation and user menus along with a call to action to visit the store. Further down on the homepage is where the upcoming events are displayed. This is important to be on the homepage as my website isn't primarily a online store it is a community for skater to get news and updates on events along with being able to update their skating setu  in the store.
 
 ### Navigation
+
+My main navigation appears just under the site logo and search bar. From this navigation users can access the products on my website as well as the extra skate section to view upcoming events, get in contact or request custom boards. The navigation is styled with bootstrap and uses dropdown menus to access further pages.
+
+### Hero Image
+
+The hero image on my site is the first image the user sees when they access the website. It is a large image of a skateboard with an overlay and text saying 'Welcome to the skate room' along with a button to bring them to the products page. This image sets the tone of the website and lets the user know straight away that it is a skating website.
+
+### Upcoming Events
+
+On the homepage under the hero image is the upcoming events section. This displays the 3 closest events in a bootstrap card with a button to view more details. This will automatically update with new events when they are added to always show the 3 closest ones. Under this is a button to access the events page to see all events.
+
+### Footer
+
+The footer is simple and contains links to The Skate Room social media and Facebook business page so users can easily follow us on social media and keep up to date with the brand. The footer also contains a sign up form embedded from mailchimp to subscribe to a newsletter about any new upcoming events or special offers.
+
+### Products page
+
+The main products page shows all products on the website and can be sorted by a number of different variables such as price and rating. The products are displayed on bootstrap cards with the price, category, image, name and rating easily visable.
+
+### Product Detail Page
+
+This page is accessed when a user clicks on a product they would like to purchase. This page features a description of the product, an option to select quantity and size and an add to cart button which updates the shopping cart with the product.
+
+### Custom Boards Page
+
+This page allows a user to fill out a form to query on a custom skate board. Users can fill out the form with their desired board, wheels and trucks and can add an image of their choosing to be printed on the board. This is then sent to us for a quote for the custom board build. 
+
+### Contact Us
+
+The contact page allows users to get in touch with The Skate Room with any questions or queries and sends and email to us when the form is submitted.
+
+### Events page
+
+The events page allows users to see all upcoming events displayed on bootstrap cards similar to that of the products. When an event is clicked a user can see more information about the event and a button to register your interest. This button brings the user to a form which they can fill out to register for the event. The form is pre loaded with the event they clicked through on or they can change event in the dropdown. When submitted this sends an automated email to the customer with confirmation of registration and a registration number for the event. An admin can also edit or delete events from this page when logged in.
+
+### Add an event page
+
+This page is only accessable to logged in admins and it is where new events can be added. The form can be filled out with event details and an image to add to the events page.
