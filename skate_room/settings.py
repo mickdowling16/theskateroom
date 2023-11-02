@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'products',
     'events',
     'staticpages',
+    'bag',
 ]
 
 MIDDLEWARE = [
