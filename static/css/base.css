@@ -62,9 +62,10 @@ h1 {
 }
 
 .shop-now-button {
-    background: #ffd51c;
-    color: black;
+    background: #471d5c;
+    color: white;
     min-width: 260px;
+    border-radius: 20px;
 }
 
 .secondary-button {
@@ -94,26 +95,21 @@ a.category-badge>span.badge:hover {
 }
 
 .btn-black {
-    background: black;
+    background: #471d5c;
     color: white;
 }
 
 .btn-outline-black {
     background: white;
-    color: black !important;
-    border: 1px solid black;
+    color: #471d5c !important;
+    border: 1px solid #471d5c;
 }
 
 .btn-outline-black:hover,
 .btn-outline-black:active,
 .btn-outline-black:focus {
-    background: black;
+    background: #471d5c;
     color: white !important;
-}
-
-.btn-yellow {
-    background: #ffd51c;
-    color: black;
 }
 
 .shop-now-button:hover,
@@ -188,6 +184,7 @@ color: white;
 
 .homepage-events-div {
     height: 900px;
+    margin-top: 80px;
 }
 
 .contact-us {
