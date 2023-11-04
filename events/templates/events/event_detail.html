@@ -27,7 +27,7 @@
                     <h5 class="card-title">{{ event.title }}</h5>
                     <p class="card-text">{{ event.description }}</p>
                     <p class="card-text">Date: {{ event.date }}</p>
-                    <a href="#" class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3">Register Interest</a>
+                    <a href="{% url 'events:register' %}" class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3">Register Interest</a>
                 </div>
             </div>
         </div>
