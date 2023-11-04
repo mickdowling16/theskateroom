@@ -87,7 +87,9 @@ a.category-badge>span.badge:hover {
     right: 10px;
 }
 
-.btt-link {
+.btt-link,
+.update-link,
+.remove-item {
     cursor: pointer;
 }
 
@@ -208,6 +210,11 @@ color: white;
     color: #000;
     transition: 0.3s;
     pointer-events: none;
+}
+
+.select-box {
+    width: 200px;
+    height: 50px;
 }
 
 .form-control {

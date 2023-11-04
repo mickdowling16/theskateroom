@@ -3,7 +3,6 @@ from django.contrib import messages
 from django.db.models import Q
 from django.db.models.functions import Lower
 from .models import Product, Category
-from .forms import ProductForm
 
 
 def all_products(request):
@@ -66,17 +65,7 @@ def product_detail(request, product_id):
 
     out_of_stock = product.stock == 0
 
-    if request.method == 'POST':
-        form = ProductForm(request.POST, instance=product)
-        if form.is_valid():
-            # Update the product with form data (e.g., name, price, etc.)
-            form.save()
-            return redirect('product_detail', product_id=product.id)
-    else:
-        form = ProductForm(instance=product)
-
     return render(request, 'products/product_detail.html', {
         'product': product,
-        'form': form,
         'out_of_stock': out_of_stock,
     })
