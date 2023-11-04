@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, redirect, reverse, HttpResponse, get_object_or_404
 from django.contrib import messages
 from .models import Event
 from .forms import RegistrationForm
@@ -16,17 +16,12 @@ def event_detail(request, event_id):
 
 
 def register(request):
+
     if request.method == 'POST':
+        messages.success(
+            request, f'Thank you for registering for event')
         form = RegistrationForm(request.POST)
         if form.is_valid():
-            # Process the form data (e.g., save it to the database)
-
-            # Add a success message
-            messages.success(
-                request, 'Thank you for registering your interest.')
-
-            # Redirect to a thank-you page or do something else
-            # Make sure you have a 'thank_you_page' URL name
             return redirect('events:event_list')
 
     else:

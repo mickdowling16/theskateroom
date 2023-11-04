@@ -193,21 +193,20 @@ color: white;
 
 /*..................................Messages */
 
-/* .message-container {
-    background-color: #471d5c;
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
+.message-container {
+    position: fixed;
+    top: 72px;
+    right: 15px;
+    z-index: 99999999999;
 }
 
-.messages {
-    list-style: none;
-    padding: 0;
+.custom-toast {
+    overflow: visible;
 }
 
-.messages li {
-    margin: 5px 0;
-} */
+.toast-capper {
+    height: 2px;
+}
 
 /*..................................Form Styles */
 
