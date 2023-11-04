@@ -10,14 +10,9 @@
 {% endblock %}
 
 {% block content %}
-<div class="row push-down-content">
-    <div class="col text-center mt-3">
-        <h2 class="logo-font">Upcoming Events</h2>
-        <hr class="w-50 mb-1 thin-line">
-    </div>
-</div>
-
-<div class="container push-down-content">
+<div class="container">
+    <h1>Upcoming Events</h1>
+    <hr class="thin-line">
     <div class="row">
         {% for event in events %}
             <div class="col-md-4">

@@ -105,7 +105,7 @@ This page is accessed when a user clicks on a product they would like to purchas
 
 ### Custom Boards Page
 
-This page allows a user to fill out a form to query on a custom skate board. Users can fill out the form with their desired board, wheels and trucks and can add an image of their choosing to be printed on the board. This is then sent to us for a quote for the custom board build. 
+This page allows a user to fill out a form to query on a custom skate board. Users can fill out the form with their desired board, wheels and trucks and can add an image of their choosing to be printed on the board. This is then sent to us for a quote for the custom board build.
 
 ### Contact Us
 
