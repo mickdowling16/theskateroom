@@ -191,6 +191,24 @@ color: white;
     height: 900px;
 }
 
+/*..................................Messages */
+
+/* .message-container {
+    background-color: #471d5c;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.messages {
+    list-style: none;
+    padding: 0;
+}
+
+.messages li {
+    margin: 5px 0;
+} */
+
 /*..................................Form Styles */
 
 .form-group {

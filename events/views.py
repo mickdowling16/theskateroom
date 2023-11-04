@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from .models import Event
 from .forms import RegistrationForm
@@ -27,9 +27,11 @@ def register(request):
 
             # Redirect to a thank-you page or do something else
             # Make sure you have a 'thank_you_page' URL name
-            return redirect('thank_you_page')
+            return redirect('events:event_list')
 
     else:
+        # Set the queryset for the event field to display events in the dropdown
         form = RegistrationForm()
+        form.fields['event'].queryset = Event.objects.all()
 
     return render(request, 'events/register.html', {'form': form})
