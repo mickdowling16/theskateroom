@@ -1,0 +1,14 @@
+{% for reply in comments %}
+    <div class="comment">
+        <p>{{ reply.text }}</p>
+        <button class="like-comment-button" data-comment-id="{{ reply.id }}">Like</button>
+        <span class="like-count">{{ reply.likes.count }}</span>
+        <form method="post" action="{% comment_form_url %}">
+            {% csrf_token %}
+            {{ reply_form }}
+        </form>
+        <div class="replies">
+            {% include "comments/templates/comments/comment_treee.html" with comments=reply.replies.all %}
+        </div>
+    </div>
+{% endfor %}
