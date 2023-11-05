@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'events',
     'staticpages',
     'bag',
+    'checkout',
 ]
 
 MIDDLEWARE = [
