@@ -191,6 +191,10 @@ color: white;
     height: 900px;
 }
 
+.event-details-page {
+    height: 1500px;
+}
+
 /*..................................Messages */
 
 .message-container {

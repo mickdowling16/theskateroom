@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-<div class="container push-down-content">
+<div class="container event-details-page push-down-content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
@@ -22,26 +22,36 @@
                     <a href="{% url 'events:register' %}" class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3">Register Interest</a>
                 </div>
             </div>
+            <div class="container mt-5">
+                <h2>Comments</h2>
+                <div id="comments">
+                    {% for comment in event.comments.all %}
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <p class="card-text">{{ comment.text }}</p>
+                        </div>
+                        <div class="card-footer">
+                            <button class="like-comment-button" data-comment-id="{{ comment.id }}">Like</button>
+                            <span class="like-count">{{ comment.likes.count }}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+    
+    <!-- Comment Form -->
+    <div class="card mt-4">
+        <div class="card-header">Add a Comment</div>
+            <div class="card-body">
+                <form method="post" action="{% url 'comments:add_comment' event.id %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <textarea class="form-control" name="text" rows="3" placeholder="Write your comment here"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Comment</button>
+                </form>
+            </div>
         </div>
     </div>
-    <div class="container mt-5">
-        <h2>Comments</h2>
-        <div id="comments">
-            {% for comment in event.comments.all %}
-            <div class="comment">
-                <p>{{ comment.text }}</p>
-                <button class="like-comment-button" data-comment-id="{{ comment.id }}">Like</button>
-                <span class="like-count">{{ comment.likes.count }}</span>
-                <form method="post" action="{% url 'add_comment' event.id %}">
-                    {% csrf_token %}
-                    {{ form.comment }}
-                    <button type="submit">Add Comment</button>
-                </form>
-                <div class="replies">
-                    {% include "comments/comment_tree.html" with comments=comment.replies.all %}
-                </div>
-            </div>
-            {% endfor %}
         </div>
     </div>
 </div>
@@ -52,20 +62,26 @@
     $(document).ready(function () {
         $(".like-comment-button").click(function () {
             var commentId = $(this).data("comment-id");
-            var likeCount = $(this).siblings(".like-count");
-
+            
+            // Store 'this' reference in a variable to access it inside the AJAX success callback.
+            var self = $(this);
+            
             $.ajax({
-                url: "{% url 'like_comment' %}",
+                url: "{% url 'comments:like_comment' %}",
                 type: "POST",
                 data: { comment_id: commentId },
                 success: function (data) {
                     if (data.liked) {
                         // Update the like count for the comment
+                        var likeCount = self.siblings(".like-count");
                         likeCount.text(data.like_count);
                     }
+                    $("#comments").append(data.html); // Append new comment
                 }
             });
+
         });
     });
 </script>
+
 {% endblock %}
