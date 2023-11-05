@@ -3,6 +3,7 @@ from django.contrib import messages
 from .models import Event
 from .forms import RegistrationForm
 from comments.models import Comment
+from comments.forms import CommentForm
 from django.urls import reverse
 
 
@@ -12,16 +13,11 @@ def event_list(request):
 
 
 def event_detail(request, event_id):
-    event = get_object_or_404(Event, pk=event_id)
-
+    # Your existing code
+    event = Event.objects.get(pk=event_id)
     comments = Comment.objects.filter(event=event)
-
-    context = {
-        'event': event,
-        'comments': comments,
-    }
-
-    return render(request, 'events/event_detail.html', context)
+    comment_form = CommentForm()
+    return render(request, 'events/event_detail.html', {'event': event, 'comments': comments, 'comment_form': comment_form})
 
 
 def register(request):
