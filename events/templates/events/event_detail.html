@@ -32,5 +32,22 @@
             </div>
         </div>
     </div>
-</div>
+    <h2>Event Comments</h2>
+    <hr class="thin-line">
+        <ul>
+            {% for comment in comments %}
+                <li>
+                    <strong>{{ comment.user }}:</strong> {{ comment.text }}
+                </li>
+            {% empty %}
+                <li>No comments yet.</li>
+            {% endfor %}
+        </ul>
+
+        <h2>Add a Comment</h2>
+        <form method="post" action="{% url 'add_comment' event.id %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Add Comment</button>
+        </form>
 {% endblock %}
