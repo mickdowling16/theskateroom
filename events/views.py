@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, reverse, HttpResponse, get_object
 from django.contrib import messages
 from .models import Event
 from .forms import RegistrationForm
+from comments.models import Comment
 from django.urls import reverse
 
 
