@@ -1,14 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block page_header %}
-<div class="container header-container">
-    <div class="row">
-        <div class="col"></div>
-    </div>
-</div>
-{% endblock %}
-
 {% block content %}
 <div class="container push-down-content">
     <div class="container-fluid">
@@ -30,27 +22,50 @@
                     <a href="{% url 'events:register' %}" class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3">Register Interest</a>
                 </div>
             </div>
-            <div class="container">
-                <h2>Event Comments</h2>
-                <hr class="thin-line">
-                <ul>
-                    {% for comment in comments %}
-                        <li>
-                            <strong>{{ comment.user }}:</strong> {{ comment.text }}
-                        </li>
-                    {% empty %}
-                        <li>No comments yet.</li>
-                    {% endfor %}
-                </ul>
-
-                <p><strong>Add a Comment</strong></p>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <h2>Comments</h2>
+        <div id="comments">
+            {% for comment in event.comments.all %}
+            <div class="comment">
+                <p>{{ comment.text }}</p>
+                <button class="like-comment-button" data-comment-id="{{ comment.id }}">Like</button>
+                <span class="like-count">{{ comment.likes.count }}</span>
                 <form method="post" action="{% url 'add_comment' event.id %}">
                     {% csrf_token %}
-                    {{ form.as_p }}
+                    {{ form.comment }}
                     <button type="submit">Add Comment</button>
                 </form>
+                <div class="replies">
+                    {% include "comments/comment_tree.html" with comments=comment.replies.all %}
+                </div>
             </div>
+            {% endfor %}
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block postloadjs %}
+<script>
+    $(document).ready(function () {
+        $(".like-comment-button").click(function () {
+            var commentId = $(this).data("comment-id");
+            var likeCount = $(this).siblings(".like-count");
+
+            $.ajax({
+                url: "{% url 'like_comment' %}",
+                type: "POST",
+                data: { comment_id: commentId },
+                success: function (data) {
+                    if (data.liked) {
+                        // Update the like count for the comment
+                        likeCount.text(data.like_count);
+                    }
+                }
+            });
+        });
+    });
+</script>
 {% endblock %}
