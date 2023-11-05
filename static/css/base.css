@@ -9,8 +9,8 @@ body {
 }
 
 .hero-image {
-    background: url('/media/skateboard-hero-image.jpg') no-repeat center center fixed;
-    box-shadow: inset 0 0 0 2000px rgba(255, 193, 0, 0.3);
+    background: url('/media/skateboard-wall.jpg') no-repeat center center fixed;
+    box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.7);
     background-size: cover;
 }
 
@@ -19,7 +19,7 @@ h1 {
 }
 
 .thick-line {
-    border: 5px solid black;
+    border: 5px solid white;
     border-radius: 5px;
 }
 
@@ -35,7 +35,7 @@ h1 {
 }
 
 .hero-section {
-    height: 900px;
+    height: 600px;
 }
 
 /* from Bulma */
