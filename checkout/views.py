@@ -11,6 +11,8 @@ from profiles.models import UserProfile
 from profiles.forms import UserProfileForm
 from bag.contexts import bag_contents
 
+import stripe
+
 
 def checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
@@ -114,7 +116,7 @@ def checkout(request):
     template = 'checkout/checkout.html'
     context = {
         'order_form': order_form,
-        'stripe_public_key': pk_test_51NxwNeJrmBz12c7uXquLmgE3P5WnEbWp3lYds8E6OkeuEPp6og4EshbiW2eisgfdYFVkIcervkNxqIP5TfEZMFBy00DTPm69C9,
+        'stripe_public_key': stripe_public_key,
         'client_secret': intent.client_secret,
     }
 
