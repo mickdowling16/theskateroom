@@ -24,64 +24,78 @@
             </div>
             <div class="container mt-5">
                 <h2>Comments</h2>
-                <div id="comments">
+                <div class="comments-container" id="comments">
                     {% for comment in event.comments.all %}
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <p class="card-text">{{ comment.text }}</p>
-                        </div>
-                        <div class="card-footer">
-                            <button class="like-comment-button" data-comment-id="{{ comment.id }}">Like</button>
-                            <span class="like-count">{{ comment.likes.count }}</span>
-                        </div>
+                    <div class="comment">
+                        <p>{{ comment.user.user.username }} ({{ comment.created_at }}):</p>
+                        <p>{{ comment.text }}</p>
+                        <button class="like-comment-button" data-comment-id="{{ comment.id }}">Like</button>
+                        <span class="like-count">{{ comment.likes.count }}</span>
                     </div>
                     {% endfor %}
                 </div>
-    
-    <!-- Comment Form -->
-    <div class="card mt-4">
-        <div class="card-header">Add a Comment</div>
-            <div class="card-body">
-                <form method="post" action="{% url 'comments:add_comment' event.id %}">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <textarea class="form-control" name="text" rows="3" placeholder="Write your comment here"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit Comment</button>
-                </form>
             </div>
-        </div>
-    </div>
+            <div class="card mt-4">
+                <div class="card-header">Add a Comment</div>
+                <div class="card-body">
+                    <form method="post" id="comment-form">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <textarea class="form-control" name="text" rows="3" placeholder="Write your comment here"></textarea>
+                        </div>
+                        <button id="comment-submit" type="submit" class="btn btn-primary">Submit Comment</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 {% endblock %}
 
 {% block postloadjs %}
-<script>
-    $(document).ready(function () {
-        $(".like-comment-button").click(function () {
-            var commentId = $(this).data("comment-id");
-            
-            // Store 'this' reference in a variable to access it inside the AJAX success callback.
-            var self = $(this);
-            
-            $.ajax({
-                url: "{% url 'comments:like_comment' %}",
-                type: "POST",
-                data: { comment_id: commentId },
-                success: function (data) {
-                    if (data.liked) {
-                        // Update the like count for the comment
-                        var likeCount = self.siblings(".like-count");
-                        likeCount.text(data.like_count);
-                    }
-                    $("#comments").append(data.html); // Append new comment
-                }
-            });
+    <script>
+    var csrftoken = $("[name=csrfmiddlewaretoken]").val(); // Get the CSRF token from the page
 
+    // Function to submit a new comment
+    function submitComment(text, event_id) {
+        $.ajax({
+            type: "POST",
+            url: "{% url 'comments:add_comment' event.id %}",
+            data: { text: text },
+            headers: { "X-CSRFToken": csrftoken }, // Include the CSRF token in the headers
+            success: function (data) {
+                if (data.success) {
+                    var commentHtml = '<div class="comment"><p>' + data.user + ' (' + data.date + '):</p><p>' + data.text + '</p><button class="like-comment-button" data-comment-id="' + data.id + '">Like</button><span class="like-count">0</span></div>';
+                    $("#comments").append(commentHtml);
+                    // Clear the input field after submission
+                    $("#comment-form textarea[name='text']").val('');
+                }
+            }
+        });
+    }
+
+    // Submit a new comment when the 'comment-submit' button is clicked
+    $("#comment-submit").click(function () {
+        var text = $("#comment-form textarea[name='text']").val();
+        var event_id = {{ event.id }};
+        submitComment(text, event_id);
+    });
+
+    // Like a comment
+    $(document).on("click", ".like-comment-button", function () {
+        var commentId = $(this).data("comment-id");
+        var self = $(this);
+        $.ajax({
+            type: "POST",
+            url: "{% url 'comments:like_comment' 0 %}".replace(0, commentId),
+            headers: { "X-CSRFToken": csrftoken }, // Include the CSRF token in the headers
+            success: function (data) {
+                if (data.liked) {
+                    var likeCount = self.siblings(".like-count");
+                    likeCount.text(data.like_count);
+                }
+            }
         });
     });
 </script>
-
 {% endblock %}
