@@ -207,15 +207,32 @@ color: white;
 
 .comment {
     margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #d3dbd5;
+    border-radius: 5px;
 }
 
 .like-comment-button {
-    background-color: #3498db;
+    background-color: #471d5c;
     color: #fff;
     border: none;
     padding: 5px 10px;
     cursor: pointer;
     border-radius: 5px;
+}
+
+.delete-comment-button {
+    background-color: transparent;
+    color: black;
+    border: 2px solid #471d5c;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.date-of-comment {
+    font-size: small;
+    font-style: italic;
 }
 
 .like-count {

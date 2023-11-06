@@ -48,3 +48,19 @@ def like_comment(request, comment_id):
         liked = True
     like_count = comment.likes.count()
     return JsonResponse({'liked': liked, 'like_count': like_count})
+
+
+@login_required
+def delete_comment(request, comment_id):
+    try:
+        comment = Comment.objects.get(pk=comment_id)
+
+        # Check if the user is authorized to delete the comment
+        if comment.user == request.user.userprofile or request.user.is_superuser:
+            comment.delete()
+            return JsonResponse({'success': True})
+        else:
+            return JsonResponse({'success': False, 'error': 'You are not authorized to delete this comment.'})
+    except Comment.DoesNotExist:
+        return JsonResponse({'success': False, 'error': 'Comment does not exist.'})
+
