@@ -45,7 +45,7 @@
                     </div>
                 </div>
                 <div class="comments-container" id="comments">
-                    {% for comment in event.comments.all %}
+                    {% for comment in event.comments.all reversed %}
                     <div class="comment" id="comment-{{ comment.id }}">
                         <strong><p>{{ comment.user.user.username }}</strong> <span class="date-of-comment">({{ comment.created_at }}):</span></p>
                         <p>{{ comment.text }}</p>
