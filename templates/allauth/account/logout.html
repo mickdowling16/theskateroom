@@ -9,6 +9,7 @@
 <hr class="thin-line">
 <p>{% trans 'Are you sure you want to sign out?' %}</p>
 
+<div class="sign-out-template">
 <form method="post" action="{% url 'account_logout' %}">
   {% csrf_token %}
   {% if redirect_field_value %}
@@ -17,6 +18,7 @@
   <a class="btn btn-outline-black rounded-0" href="{% url 'home' %}">Cancel</a>
   <button type="submit">{% trans 'Sign Out' %}</button>
 </form>
+</div>
 
 
 {% endblock %}

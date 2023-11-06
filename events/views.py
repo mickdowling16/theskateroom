@@ -13,9 +13,8 @@ def event_list(request):
 
 
 def event_detail(request, event_id):
-    # Your existing code
     event = Event.objects.get(pk=event_id)
-    comments = Comment.objects.filter(event=event)
+    comments = Comment.objects.filter(event=event).order_by('-created_at')
     comment_form = CommentForm()
     return render(request, 'events/event_detail.html', {'event': event, 'comments': comments, 'comment_form': comment_form})
 
@@ -30,7 +29,6 @@ def register(request):
             return redirect('events:event_list')
 
     else:
-        # Set the queryset for the event field to display events in the dropdown
         form = RegistrationForm()
         form.fields['event'].queryset = Event.objects.all()
 
