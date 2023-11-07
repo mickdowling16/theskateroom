@@ -118,3 +118,210 @@ The events page allows users to see all upcoming events displayed on bootstrap c
 ### Add an event page
 
 This page is only accessable to logged in admins and it is where new events can be added. The form can be filled out with event details and an image to add to the events page.
+
+# Models
+
+I used a variety of models in my project. Both custom models and models from the Boutique Ado walkthrough project. Below are all my models represented in a table
+
+### Product Model
+
+| Field Name   | Field Type          | Description                                        |
+|--------------|---------------------|----------------------------------------------------|
+| category     | ForeignKey(Category)| ForeignKey to 'Category', null=True, blank=True, on_delete=models.SET_NULL |
+| sku          | CharField           | Max length 254, null=True, blank=True              |
+| name         | CharField           | Max length 254                                    |
+| description  | TextField           |                                                  |
+| has_sizes    | BooleanField        | Default: False                                    |
+| size         | CharField           | Max length 10, Default: 'Medium'                  |
+| stock        | IntegerField        | Default: 0                                        |
+| price        | DecimalField        | Max digits 6, Decimal places 2                    |
+| rating       | DecimalField        | Max digits 6, Decimal places 2, null=True, blank=True |
+| image_url    | URLField            | Max length 1024, null=True, blank=True             |
+| image        | ImageField          | null=True, blank=True                              |
+
+### Event Model
+
+| Field Name   | Field Type         | Description                                        |
+|--------------|--------------------|----------------------------------------------------|
+| title        | CharField          | Max length 200                                    |
+| description  | TextField          |                                                  |
+| date         | DateTimeField      |                                                  |
+| image        | ImageField         | upload_to='event_images/', blank=True, null=True   |
+
+### Order Model
+
+| Field Name      | Field Type              | Description                                             |
+|-----------------|-------------------------|---------------------------------------------------------|
+| order_number    | CharField               | Max length 32, not editable                              |
+| user_profile    | ForeignKey(UserProfile) | on_delete=models.SET_NULL, null=True, blank=True, related_name='orders' |
+| full_name       | CharField               | Max length 50, not null, not blank                       |
+| email           | EmailField              | Max length 254, not null, not blank                       |
+| phone_number    | CharField               | Max length 20, not null, not blank                       |
+| country         | CountryField            | blank_label='Country *', not null, not blank             |
+| postcode        | CharField               | Max length 20, null and blank                             |
+| town_or_city    | CharField               | Max length 40, not null, not blank                       |
+| street_address1 | CharField               | Max length 80, not null, not blank                       |
+| street_address2 | CharField               | Max length 80, null and blank                             |
+| county          | CharField               | Max length 80, null and blank                             |
+| date            | DateTimeField           | auto_now_add=True                                       |
+| delivery_cost   | DecimalField            | max_digits=6, decimal_places=2, not null, default=0     |
+| order_total     | DecimalField            | max_digits=10, decimal_places=2, not null, default=0   |
+| grand_total     | DecimalField            | max_digits=10, decimal_places=2, not null, default=0   |
+| original_bag    | TextField               | not null, not blank, default=''                          |
+| stripe_pid      | CharField               | Max length 254, not null, not blank, default=''         |
+
+### Order line item model
+
+| Field Name     | Field Type              | Description                                             |
+|-----------------|-------------------------|---------------------------------------------------------|
+| order           | ForeignKey(Order)       | not null, not blank, on_delete=models.CASCADE, related_name='lineitems' |
+| product         | ForeignKey(Product)     | not null, not blank, on_delete=models.CASCADE           |
+| product_size    | CharField               | Max length 2, null and blank                             |
+| quantity        | IntegerField            | not null, not blank, default=0                         |
+| lineitem_total  | DecimalField            | max_digits=6, decimal_places=2, not null, not blank, not editable |
+
+### Comment Model
+
+| Field Name   | Field Type          | Description                                        |
+|--------------|---------------------|----------------------------------------------------|
+| event        | ForeignKey(Event)  | on_delete=models.CASCADE, related_name='comments' |
+| user         | ForeignKey(UserProfile) | on_delete=models.CASCADE |
+| text         | TextField           |                                                  |
+| created_at   | DateTimeField       | auto_now_add=True                                  |
+| likes        | ManyToManyField(User) | related_name='liked_comments'                     |
+
+## Tools & Technologies Used
+
+- [HTML](https://en.wikipedia.org/wiki/HTML) used for the main site content.
+- [CSS](https://en.wikipedia.org/wiki/CSS) used for the main site design and layout.
+- [Bootstrap](https://getbootstrap.com/) used as the front-end CSS framework for modern responsiveness and pre-built components like forms, rows and columns.
+- [JavaScript](https://www.javascript.com/) used to populate menu items onto main page and display Google maps API.
+- [Python](https://www.python.org/) used as the back-end programming language.
+- [Git](https://git-scm.com/) used for version control. (git add, git commit, git push)
+- [GitHub](https://github.com/)used for secure online code storage.
+- [Codeanywhere](https://app.codeanywhere.com/) used as a cloud-based IDE for development.
+- [Django](https://www.djangoproject.com/) used as the Python framework for the site.
+- [PostgreSQL](https://www.postgresql.org/) used as the relational database management.
+- [ElephantSQL](https://www.elephantsql.com/) used as the Postgres database.
+- [Heroku](https://www.heroku.com/) used for hosting the deployed back-end site.
+- [Amazon Web Services](https://aws.amazon.com/free/?trk=e747cc26-a307-4ae0-981a-6dc5c1cb4121&sc_channel=ps&ef_id=CjwKCAiA3aeqBhBzEiwAxFiOBmiu8xFBH9IvqKB-2wBMY_Wofr2lvZHKx9SM24yUNUuGBm7Y8XuhZxoCTPMQAvD_BwE:G:s&s_kwcid=AL!4422!3!453053794221!e!!g!!amazon%20aws!10705896207!102406403021) used for online static file storage.
+- [Gmail](https://www.google.com/gmail/about/) used to create send and recieve emails from users.
+
+## Deployment
+
+My app is found deployed on Heroku.
+
+### ElephantSQL Database
+
+This app uses ElephantSQL for the PostgreSQL Database.
+
+To obtain your own Postgres Database, sign-up with your GitHub account, then follow the steps below:
+
+- Click Create New Instance to start a new database.
+- Provide a name, usually your project name
+- Select the free Tiny Turtle plan.
+- Select the Region and Data Center closest to you.
+- Now click on your new database name, where you can view the database URL and Password.
+
+### Amazon Web Services
+
+### Heroku Deployment
+
+This app is deployed to [Heroku](https://heroku.com). After account set up follow the deployment steps below
+
+- Select create a new app from the dropdown menu on your Heroku Dashboard
+- Your app name must be unique, and then choose a region closest to you, then select Create App.
+- From your app Settings, click Reveal Config Vars, and set your environment variables.
+
+| Config vars | Description |
+| ----------- | ----------- |
+| DATABASE_URL | Insert your own ElephantSQL database URL here |
+| DISABLE_COLLECTSTATIC  | 1 (this is temporary, and can be removed for the final deployment)|
+| SECRET_KEY | This can be any random secret key |
+| EMAIL_HOST_USER | This is to send emails in my app using Gmail. This will be the email address |
+| EMAIL_HOST_PASS | This is the password for the email address to allow django to send emails |
+| STRIPE_PUBLIC_KEY | This is the public key neccessary for stripe payments |
+| STRIPE_SECRET_KEY | This is the secret key neccessary for stripe payments. (important to keep secret) |
+
+Heroku also needs two additional files in order to deploy properly.
+> requirements.txt
+
+> Procfile
+
+You can install this project's requirements using:
+> pip3 install -r requirements.txt
+  
+If you require additional packages that have been installed, then the requirements file needs updated using
+> pip3 freeze --local > requirements.txt
+
+The Procfile can be created with the following command:
+> echo web: gunicorn app_name.wsgi > Procfile
+
+replace app_name with the name of your primary Django app name
+
+For Heroku deployment, follow these steps to connect your own GitHub repository to the newly created app:
+
+#### Automatic Deployment
+
+Select Automatic Deployment from the Heroku app.
+
+#### Manual Deployment
+
+- In the Terminal/CLI, connect to Heroku using this command: heroku login -i
+- Set the remote for Heroku: heroku git:remote -a app_name (replace app_name with your app name)
+- After performing the standard Git add, commit, and push to GitHub, you can now type: git push heroku main
+
+The project should now be connected and deployed to Heroku!
+
+## Local Deployment
+
+This project can be cloned or forked in order to make a local copy on your own system.
+
+For either method, you will need to install any applicable packages found within the requirements.txt file.
+
+- pip3 install -r requirements.txt.
+- You will need to create environment varibales file called env.py at the root-level, and include the same environment variables listed from the Heroku deployment steps. Make sure to include this in your .gitignore file
+
+Sample env.py file:
+
+```
+import os
+
+os.environ.setdefault("CLOUDINARY_URL", "insert your own Cloudinary API key here")
+os.environ.setdefault("DATABASE_URL", "insert your own ElephantSQL database URL here")
+os.environ.setdefault("SECRET_KEY", "this can be any random secret key")
+os.environ.setdefault("STRIPE_SECRET_KEY", "this is available on stripes developer section on your account")
+os.environ.setdefault("STRIPE_PUBLIC_KEY", "this is available on stripes developer section on your account")
+
+
+```
+
+Once the project is cloned or forked, in order to run it locally, you'll need to follow these steps:
+
+1. Start the Django app: python3 manage.py runserver
+2. Stop the app once it's loaded: CTRL+C or ⌘+C (Mac)
+3. Make any necessary migrations: python3 manage.py makemigrations
+4. Migrate the data to the database: python3 manage.py migrate
+5. Create a superuser: python3 manage.py createsuperuser
+6. Everything should be ready now, so run the Django app again: python3 manage.py runserver
+
+#### Cloning
+
+You can clone the repository by following these steps:
+
+1. Go to the GitHub repository
+2. Locate the Code button above the list of files and click it
+3. Select if you prefer to clone using HTTPS, SSH, or GitHub CLI and click the copy button to copy the URL to your clipboard
+4. Open Git Bash or Terminal
+5. Change the current working directory to the one where you want the cloned directory
+6. In your IDE Terminal, type the following command to clone my repository:
+git clone <https://github.com/mickdowling16/theskateroom>
+7. Press Enter to create your local clone.
+
+#### Forking
+
+By forking the GitHub Repository, we make a copy of the original repository on our GitHub account to view and/or make changes without affecting the original owner's repository. You can fork this repository by using the following steps:
+
+1. Log in to GitHub and locate my GitHub Repository
+2. At the top of the Repository just above the "Settings" Button on the menu, locate the "Fork" Button.
+3. Once clicked, you should now have a copy of the original repository in your own GitHub account!
