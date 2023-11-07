@@ -1,0 +1,1 @@
+The Skate Room Order Confirmation. Order No: {{ order.order_number }}
