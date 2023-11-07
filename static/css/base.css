@@ -4,7 +4,7 @@ html {
 }
 
 body {
-    height: calc(100vh - 164px);
+    height: calc(100vh - 300px);
     color: #555;
     font-family: 'Kanit', sans-serif;
     width: 100%;
@@ -51,7 +51,7 @@ h1 {
 
 .logo-font {
     text-transform: uppercase;
-    color: black;
+    color: white;
     font-weight: 900;
 }
 
@@ -152,8 +152,18 @@ color: white;
 
 #footer {
     background-color: #000;
-    height: 100%;
+    height: 250px;
     width: 100%;
+}
+
+.wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1;
 }
 
 .social-icons {
@@ -197,6 +207,16 @@ color: white;
     height: 1500px;
 }
 
+/*..................................Nav bar */
+
+#main-nav {
+    background-color: #471d5c;
+}
+
+.background-purple {
+    background-color: #471d5c;
+}
+
 /*..................................Comments */
 
 .comments-container {
@@ -221,6 +241,26 @@ color: white;
     padding: 5px 10px;
     cursor: pointer;
     border-radius: 5px;
+}
+
+.skate-room-button {
+    background-color: #471d5c;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.skate-room-button:hover {
+    background-color: white;
+    color: #471d5c;
+    border: 1px solid #471d5c;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
 }
 
 .delete-comment-button {
@@ -422,7 +462,6 @@ color: white;
 
 /* -------------------------------- Media Queries */
 
-/* Slightly larger container on xl screens */
 @media (min-width: 1200px) {
     .container {
         max-width: 80%;
@@ -441,5 +480,16 @@ color: white;
 
     .header-container {
         padding-top: 164px;
+    }
+}
+
+/* pad the top a bit when navbar is collapsed on mobile */
+@media (max-width: 991px) {
+    .header-container {
+        padding-top: 116px;
+    }
+
+    body {
+        height: calc(100vh - 116px);
     }
 }
