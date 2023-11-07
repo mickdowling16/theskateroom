@@ -14,7 +14,7 @@
 <div class="hero-section container">
     <div class="row">
         <div class="col-12 homepage-text">
-            <h1 class="display-4 logo-font text-white text-center">
+            <h1 class="display-4 text-white text-center">
                 Welcome to The Skate Room.
             </h1>
             <hr class="thick-line">
@@ -53,7 +53,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ event.title }}</h5>
                         <p class="card-text">Date: {{ event.date }}</p>
-                        <a href="{% url 'events:event_detail' event.id %}" class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3">Details</a>
+                        <a href="{% url 'events:event_detail' event.id %}" class="skate-room-button">Details</a>
                     </div>
                 </div>
             </div>
