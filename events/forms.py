@@ -1,3 +1,4 @@
+from django.forms import SelectDateWidget
 from django import forms
 from .models import Event
 
@@ -11,3 +12,19 @@ class RegistrationForm(forms.Form):
         empty_label='Select an event',
     )
     message = forms.CharField(max_length=500)
+
+
+class EventForm(forms.ModelForm):
+    class Meta:
+        model = Event
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields['date'].widget = forms.DateInput(attrs={'type': 'date'})
+        self.fields['time'].widget = forms.TimeInput(attrs={'type': 'time'})
+
+
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'border-black rounded-0'

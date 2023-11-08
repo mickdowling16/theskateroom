@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, reverse, HttpResponse, get_object_or_404
 from django.contrib import messages
 from .models import Event
-from .forms import RegistrationForm
+from .forms import RegistrationForm, EventForm
 from comments.models import Comment
 from comments.forms import CommentForm
 from django.urls import reverse
@@ -33,3 +33,25 @@ def register(request):
         form.fields['event'].queryset = Event.objects.all()
 
     return render(request, 'events/register.html', {'form': form})
+
+
+def add_event(request):
+    """ Add an event to the website """
+    if request.method == 'POST':
+        form = EventForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully added an event!')
+            return redirect(reverse('events:add_event'))
+        else:
+            messages.error(
+                request, 'Failed to add a new event. Please ensure the form is valid.')
+    else:
+        form = EventForm()
+
+    template = 'events/add_event.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
