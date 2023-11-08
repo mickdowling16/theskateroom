@@ -2,11 +2,11 @@
 {% load static %}
 
 {% block page_header %}
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
     </div>
+</div>
 {% endblock %}
 
 {% block content %}
@@ -18,49 +18,56 @@
                     {% if event.image %}
                         <img class="card-img-top img-fluid" src="{{ event.image.url }}" alt="{{ event.title }}">
                     {% else %}
-                        <img class="card-img-top img-fluid" src="{% static 'noimage.png' %}" alt="{{ event.title }}">
+                        <img class="card-img-top img-thumbnail" src="{{ MEDIA_URL }}event_images/noimage.png" alt="{{ event.title }}">
                     {% endif %}
                 </div>
             </div>
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="product-details-container mb-5 mt-md-5">
                     <h5 class="card-title">{{ event.title }}</h5>
+                    {% if request.user.is_superuser %}
+                        <small>
+                            <a href="{% url 'events:edit_event' event.id %}">Edit</a> | 
+                            <a class="text-danger" href="{% url 'events:delete_event' event.id %}">Delete</a>
+                        </small>
+                    {% endif %}
                     <p class="card-text">{{ event.description }}</p>
                     <p class="card-text">Date: {{ event.date }}</p>
                     <a href="{% url 'events:register' %}" class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3">Register Interest</a>
                 </div>
             </div>
-            <div class="container mt-5">
-                <h2>Comments</h2>
-                <div class="comment-form-container card mt-4">
-                    <div class="card-header">Add a Comment</div>
-                    <div class="card-body">
-                        <form method="post" id="comment-form">
-                            {% csrf_token %}
-                            <div class="form-group">
-                                <textarea class="form-control" name="text" rows="3" placeholder="Write your comment here"></textarea>
-                            </div>
-                            <button id="comment-submit" type="submit" class="like-comment-button">Submit Comment</button>
-                        </form>
-                    </div>
+        </div>
+
+        <div class="container mt-5">
+            <h2>Comments</h2>
+            <div class="comment-form-container card mt-4">
+                <div class="card-header">Add a Comment</div>
+                <div class="card-body">
+                    <form method="post" id="comment-form">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <textarea class="form-control" name="text" rows="3" placeholder="Write your comment here"></textarea>
+                        </div>
+                        <button type="submit" class="like-comment-button">Submit Comment</button>
+                    </form>
                 </div>
-                <div class="comments-container" id="comments">
-                    {% for comment in event.comments.all reversed %}
-                    <div class="comment" id="comment-{{ comment.id }}">
-                        <strong><p>{{ comment.user.user.username }}</strong> <span class="date-of-comment">({{ comment.created_at }}):</span></p>
-                        <p>{{ comment.text }}</p>
-                        <button class="like-comment-button" data-comment-id="{{ comment.id }}">
-                            <i class="fa-regular fa-heart" style="color: #ff0000;"></i> Like
+            </div>
+            <div class="comments-container" id="comments">
+                {% for comment in event.comments.all reversed %}
+                <div class="comment" id="comment-{{ comment.id }}">
+                    <strong><p>{{ comment.user.user.username }}</strong> <span class="date-of-comment">({{ comment.created_at }}):</span></p>
+                    <p>{{ comment.text }}</p>
+                    <button class="like-comment-button" data-comment-id="{{ comment.id }}">
+                        <i class="fa-regular fa-heart" style="color: #ff0000;"></i> Like
+                    </button>
+                    <span class="like-count">{{ comment.likes.count }}</span>
+                    {% if request.user == comment.user.user %}
+                        <button class="delete-comment-button" data-comment-id="{{ comment.id }}" onclick="deleteComment({{ comment.id }})">
+                            <i class="fa-solid fa-trash" style="color: #471d5c;"></i> Delete
                         </button>
-                        <span class="like-count">{{ comment.likes.count }}</span>
-                        {% if request.user == comment.user.user %}
-                            <button class="delete-comment-button" data-comment-id="{{ comment.id }}" onclick="deleteComment({{ comment.id }})">
-                                <i class="fa-solid fa-trash" style="color: #471d5c;"></i> Delete
-                            </button>
-                        {% endif %}
-                    </div>
-                    {% endfor %}
+                    {% endif %}
                 </div>
+                {% endfor %}
             </div>
         </div>
     </div>
