@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.http import JsonResponse
+from django.contrib import messages
 from .models import Comment
 from .forms import CommentForm
 from events.models import Event
@@ -18,6 +19,7 @@ def add_comment(request, event_id):
             comment.user = request.user.userprofile
             comment.event = event
             comment.save()
+            messages.success(request, f'You added a comment')
 
             # Return a JSON response indicating success
             return JsonResponse({
@@ -45,6 +47,7 @@ def like_comment(request, comment_id):
         comment.likes.add(user)
         liked = True
     like_count = comment.likes.count()
+    messages.success(request, f'You liked a comment')
     return JsonResponse({'liked': liked, 'like_count': like_count})
 
 
@@ -56,6 +59,7 @@ def delete_comment(request, comment_id):
         # Check if the user is authorized to delete the comment
         if comment.user == request.user.userprofile or request.user.is_superuser:
             comment.delete()
+            messages.success(request, f'Successfully deleted comment')
             return JsonResponse({'success': True})
         else:
             return JsonResponse({'success': False, 'error': 'You are not authorized to delete this comment.'})
