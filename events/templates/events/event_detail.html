@@ -16,9 +16,10 @@
             <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
                 <div class="image-container my-5">
                     {% if event.image %}
-                        <img class="card-img-top img-fluid" src="{{ event.image.url }}" alt="{{ event.title }}">
+                    <img class="card-img-top img-fluid" src="{{ event.image.url }}" alt="{{ event.title }}">
                     {% else %}
-                        <img class="card-img-top img-thumbnail" src="{{ MEDIA_URL }}event_images/noimage.png" alt="{{ event.title }}">
+                    <img class="card-img-top img-thumbnail" src="{{ MEDIA_URL }}event_images/noimage.png"
+                        alt="{{ event.title }}">
                     {% endif %}
                 </div>
             </div>
@@ -26,14 +27,15 @@
                 <div class="product-details-container mb-5 mt-md-5">
                     <h5 class="card-title">{{ event.title }}</h5>
                     {% if request.user.is_superuser %}
-                        <small>
-                            <a href="{% url 'events:edit_event' event.id %}">Edit</a> | 
-                            <a class="text-danger" href="{% url 'events:delete_event' event.id %}">Delete</a>
-                        </small>
+                    <small>
+                        <a href="{% url 'events:edit_event' event.id %}">Edit</a> |
+                        <a class="text-danger" href="{% url 'events:delete_event' event.id %}">Delete</a>
+                    </small>
                     {% endif %}
                     <p class="card-text">{{ event.description }}</p>
                     <p class="card-text">Date: {{ event.date }}</p>
-                    <a href="{% url 'events:register' %}" class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3">Register Interest</a>
+                    <a href="{% url 'events:register' %}"
+                        class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3">Register Interest</a>
                 </div>
             </div>
         </div>
@@ -46,25 +48,29 @@
                     <form method="post" id="comment-form">
                         {% csrf_token %}
                         <div class="form-group">
-                            <textarea class="form-control" name="text" rows="3" placeholder="Write your comment here"></textarea>
+                            <textarea class="form-control" name="text" rows="3"
+                                placeholder="Write your comment here"></textarea>
                         </div>
-                        <button type="submit" class="like-comment-button">Submit Comment</button>
+                        <button type="submit" id="comment-submit" class="btn">Submit Comment</button>
                     </form>
                 </div>
             </div>
             <div class="comments-container" id="comments">
                 {% for comment in event.comments.all reversed %}
                 <div class="comment" id="comment-{{ comment.id }}">
-                    <strong><p>{{ comment.user.user.username }}</strong> <span class="date-of-comment">({{ comment.created_at }}):</span></p>
+                    <strong>
+                        <p>{{ comment.user.user.username }}
+                    </strong> <span class="date-of-comment">({{ comment.created_at }}):</span></p>
                     <p>{{ comment.text }}</p>
                     <button class="like-comment-button" data-comment-id="{{ comment.id }}">
                         <i class="fa-regular fa-heart" style="color: #ff0000;"></i> Like
                     </button>
                     <span class="like-count">{{ comment.likes.count }}</span>
                     {% if request.user == comment.user.user %}
-                        <button class="delete-comment-button" data-comment-id="{{ comment.id }}" onclick="deleteComment({{ comment.id }})">
-                            <i class="fa-solid fa-trash" style="color: #471d5c;"></i> Delete
-                        </button>
+                    <button class="delete-comment-button" data-comment-id="{{ comment.id }}"
+                        onclick="deleteComment({{ comment.id }})">
+                        <i class="fa-solid fa-trash" style="color: #471d5c;"></i> Delete
+                    </button>
                     {% endif %}
                 </div>
                 {% endfor %}
@@ -75,29 +81,56 @@
 {% endblock %}
 
 {% block postloadjs %}
-    <script>
+<script>
     var csrftoken = $("[name=csrfmiddlewaretoken]").val(); // Get the CSRF token from the page
 
     // Function to submit a new comment
     function submitComment(text, event_id) {
-        $.ajax({
-            type: "POST",
-            url: "{% url 'comments:add_comment' event.id %}",
-            data: { text: text },
-            headers: { "X-CSRFToken": csrftoken }, // Include the CSRF token in the headers
-            success: function (data) {
-                if (data.success) {
-                    var commentHtml = '<div class="comment"><p>' + data.user + ' (' + data.date + '):</p><p>' + data.text + '</p><button class="like-comment-button" data-comment-id="' + data.id + '">Like</button><span class="like-count">0</span></div>';
-                    $("#comments").append(commentHtml);
-                    // Clear the input field after submission
-                    $("#comment-form textarea[name='text']").val('');
-                }
+    $.ajax({
+        type: "POST",
+        url: "{% url 'comments:add_comment' event.id %}",
+        data: { text: text },
+        headers: { "X-CSRFToken": csrftoken },
+        success: function (data) {
+            if (data.success) {
+                // Format the date using toLocaleDateString
+                var commentDate = new Date(data.date).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    second: 'numeric',
+                    hour12: true
+                });
+
+                var commentHtml = `
+                    <div class="comment" id="comment-${data.id}">
+                        <strong><p>${data.user}</strong> (${commentDate}):</p>
+                        <p>${data.text}</p>
+                        <button class="like-comment-button" data-comment-id="${data.id}">
+                            <i class="fa-regular fa-heart" style="color: #ff0000;"></i> Like
+                        </button>
+                        <span class="like-count">0</span>
+                        <button class="delete-comment-button" data-comment-id="${data.id}" onclick="deleteComment(${data.id})">
+                            <i class="fa-solid fa-trash" style="color: #471d5c;"></i> Delete
+                        </button>
+                    </div>`;
+                $("#comments").append(commentHtml);
+                // Clear the input field after submission
+                $("#comment-form textarea[name='text']").val('');
             }
-        });
-    }
+        },
+        error: function (xhr, status, error) {
+            console.error("Submit Comment Error:", error);
+        }
+    });
+}
+
 
     // Submit a new comment when the 'comment-submit' button is clicked
-    $("#comment-submit").click(function () {
+        $("#comment-form").submit(function (e) {
+        e.preventDefault(); // Prevent the default form submission
         var text = $("#comment-form textarea[name='text']").val();
         var event_id = {{ event.id }};
         submitComment(text, event_id);
@@ -121,20 +154,20 @@
     });
 
     function deleteComment(commentId) {
-    $.ajax({
-        type: "POST",
-        url: "/delete_comment/" + commentId + "/",
-        headers: { "X-CSRFToken": csrftoken },
-        success: function (data) {
-            if (data.success) {
-                // Comment deleted successfully, remove it from the page.
-                $('#comment-' + commentId).remove();
-            } else {
-                // Display an error message to the user.
-                alert(data.error);
+        $.ajax({
+            type: "POST",
+            url: "/delete_comment/" + commentId + "/",
+            headers: { "X-CSRFToken": csrftoken },
+            success: function (data) {
+                if (data.success) {
+                    // Comment deleted successfully, remove it from the page.
+                    $('#comment-' + commentId).remove();
+                } else {
+                    // Display an error message to the user.
+                    alert(data.error);
+                }
             }
-        }
-    });
-}
+        });
+    }
 </script>
 {% endblock %}
