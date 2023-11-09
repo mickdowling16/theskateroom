@@ -22,18 +22,16 @@ def add_comment(request, event_id):
             # Return a JSON response indicating success
             return JsonResponse({
                 'success': True,
-                'user': comment.user.username,
+                'user': comment.user.user.username,
                 'date': comment.created_at,
                 'text': comment.text,
                 'id': comment.id,
             })
 
-            return redirect('events:event_detail', event_id=event_id)
-        else:
-            # Return a JSON response indicating failure
-            return JsonResponse({'success': False})
+        # Return a JSON response indicating failure
+        return JsonResponse({'success': False, 'error': 'Invalid form data'})
 
-    return redirect('events:event_detail', event_id=event_id)
+    return JsonResponse({'success': False, 'error': 'Invalid request method'})
 
 
 @login_required
@@ -63,4 +61,3 @@ def delete_comment(request, comment_id):
             return JsonResponse({'success': False, 'error': 'You are not authorized to delete this comment.'})
     except Comment.DoesNotExist:
         return JsonResponse({'success': False, 'error': 'Comment does not exist.'})
-
