@@ -1,4 +1,5 @@
 asgiref==3.7.2
+dj-database-url==0.5.0
 Django==3.2.22
 django-allauth==0.41.0
 django-countries==7.2.1
@@ -6,8 +7,10 @@ django-crispy-forms==1.14.0
 djhtml==0.0.3
 flake8==5.0.4
 flake8-nb==0.5.3
+gunicorn==21.2.0
 oauthlib==3.2.2
 Pillow==10.1.0
+psycopg2==2.9.9
 pycodestyle==2.9.1
 pyflakes==2.5.0
 python3-openid==3.2.0
