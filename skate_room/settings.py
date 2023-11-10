@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-)(7_8=44jtc5&23&-#66zlhn)%qj2&7vmx$vm6(xp%k_4p%twb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['skate-room.herokuapp.com', '8000-mickdowling-theskateroo-3q138vatimo.ws-eu106.gitpod.io']
+ALLOWED_HOSTS = ['skate-room-fa0d77babcb9.herokuapp.com', '8000-mickdowling-theskateroo-3q138vatimo.ws-eu106.gitpod.io']
 
 
 # Application definition
