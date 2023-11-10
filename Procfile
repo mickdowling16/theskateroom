@@ -1,0 +1,1 @@
+web: gunicorn skate_room.wsgi:application
