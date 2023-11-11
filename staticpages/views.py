@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.core.mail import send_mail
+from django.contrib import messages
 from django.http import HttpResponseRedirect
 from .forms import ContactForm
 
@@ -18,6 +19,8 @@ def contact(request):
 
             # Display success message when form submitted
             messages.success(request, 'Contact form submitted.')
+
+            return redirect('home')
 
     else:
         form = ContactForm()
