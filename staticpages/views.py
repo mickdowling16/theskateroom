@@ -26,3 +26,6 @@ def contact(request):
         form = ContactForm()
 
     return render(request, 'staticpages/contact.html', {'form': form})
+
+def skateparks(request):
+    return render(request, 'staticpages/skateparks.html')

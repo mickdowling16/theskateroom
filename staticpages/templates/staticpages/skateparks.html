@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container contact-us">
+    <h1>Local Skate Parks</h1>
+    <hr class="thin-line">
+    <p>Find local skateparks near you!</p>
+        <div class="row">
+          <div class="col-md-6">
+            <div id="map" style="height: 500px;"></div>
+          </div>
+          <div class="col-md-6">
+            <ul class="list-group" id="park-list">
+              <!-- List items will be added dynamically -->
+            </ul>
+          </div>
+        </div>
+      </div>
+
+   
+{% endblock %}
+
+
+{% block postloadjs %}    
+    <script>
+        var map = L.map('map').setView([53.349805, -6.26031], 7); // Dublin coordinates
+    
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+
+        var skateParks = [
+            { name: 'Westside Skate Park', lat: 53.277028, lon: -9.06795 },
+            { name: 'Athlone Skate Park', lat: 53.462086, lon: -7.69751 },
+            { name: 'Mullingar Skate Park', lat: 53.542134, lon: -7.20587 },
+            { name: 'Portlaoise Skate Park', lat: 53.052968, lon: -7.08228 },
+            { name: 'Naas Skatepark', lat: 53.255551, lon: -6.530219 },
+            { name: 'Waterford Skate Park', lat: 52.280122, lon: -6.93945 },
+            { name: 'Cork Skate Park', lat: 51.903180, lon: -8.518744 },
+            { name: 'Kerry Skate Park', lat: 52.305074, lon: -9.601630 },
+            { name: 'Sligo Skate Park', lat: 54.32800, lon: -8.20290 },
+            { name: 'Skerries Skate Park', lat: 53.603372, lon: -6.00015 },
+            { name: 'Monkstwon Skate Park', lat: 53.299151, lon: -6.07980 },
+            // Add more skate park data
+        ];
+
+        skateParks.forEach(function (park) {
+            L.marker([park.lat, park.lon]).addTo(map).bindPopup(park.name);
+        });
+
+        skateParks.forEach(function (park, index) {
+        var listItem = document.createElement('li');
+        listItem.className = 'list-group-item';
+        listItem.textContent = park.name;
+        listItem.onclick = function () {
+        highlightMarker(index);
+        };
+
+        document.getElementById('park-list').appendChild(listItem);
+    });
+
+        function highlightMarker(index) {
+        var park = skateParks[index];
+        map.setView([park.lat, park.lon], 14);
+    }
+
+  </script>
+  {% endblock %}
