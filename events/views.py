@@ -38,7 +38,7 @@ def register(request):
             send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, ['theskateroom2023@gmail.com'])
 
             # Redirect or render a success page
-            messages.success(request, 'Thank you for registering for the event. An email has been sent to the admin.')
+            messages.success(request, f"Thank you for registering for {event}.")
             return redirect('events:event_list')
 
     else:
