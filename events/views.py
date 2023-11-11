@@ -5,6 +5,8 @@ from .forms import RegistrationForm, EventForm
 from comments.models import Comment
 from comments.forms import CommentForm
 from django.urls import reverse
+from django.core.mail import send_mail
+from django.conf import settings
 
 
 def event_list(request):
@@ -20,12 +22,23 @@ def event_detail(request, event_id):
 
 
 def register(request):
-
     if request.method == 'POST':
-        messages.success(
-            request, f'Thank you for registering for event')
         form = RegistrationForm(request.POST)
         if form.is_valid():
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            phone = form.cleaned_data['phone']
+            event = form.cleaned_data['event']
+            message = form.cleaned_data['message']
+
+            # Send email with form details
+            subject = f'New Registration for {event}'
+            message = f"Name: {name}\nEmail: {email}\nPhone: {phone}\nEvent: {event}\nMessage: {message}"
+
+            send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, ['theskateroom2023@gmail.com'])
+
+            # Redirect or render a success page
+            messages.success(request, 'Thank you for registering for the event. An email has been sent to the admin.')
             return redirect('events:event_list')
 
     else:
