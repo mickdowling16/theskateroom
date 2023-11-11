@@ -184,6 +184,17 @@ Users can add products to their shopping bag to purchase. The shopping bag will 
   
 </details>
 
+### Profile page
+
+Allows users to update their profile information and view their recent order history.
+
+<details>
+  <summary>Profile</summary>
+
+  ![Profile](./documentation/testing/order-history.PNG)
+  
+</details>
+
 
 ### Checkout Page
 
@@ -343,6 +354,24 @@ I used a variety of models in my project. Both custom models and models from the
 | text         | TextField           |                                                  |
 | created_at   | DateTimeField       | auto_now_add=True                                  |
 | likes        | ManyToManyField(User) | related_name='liked_comments'                     |
+
+## SEO & Marketing
+
+### SEO
+
+To aid in SEO for my business, I have included meta descriptions and keywords in the page header. I have also included a robots.txt file and a sitemap.xml file to aid in seach engines scraping my website. I have also used h1 and h2 headings with keywords and included keywords in product names and descriptions and event names and descriptions.
+
+![meta description and keywords](documentation/meta-keywords.PNG)
+
+### Marketing
+
+To aid with digital marketing for my website I have set up a Facebook business page that is linked in the footer of the website. This allows my users to keep up to date with the company on social media and for my business to appeal to a larger audience base
+
+![Facebook Business Page](documentation/testing/facebook.PNG)
+
+I also added a newsletter signup form in the footer of my website. This form is embeded from Mailchimp and allows users to submit their email address to keep up to date with the latest news, events and special offers.
+
+![Sign up form](documentation/testing/newsletter.PNG)
 
 ## Tools & Technologies Used
 

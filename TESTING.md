@@ -64,3 +64,15 @@ Went through each python file and fixed until no errors were reported in problem
 ![Contact form submission email](documentation/testing/contact.PNG)
 19. Purchase product: Add products to shopping bag, proceed to checkout, enter details, checkout securely. PASSED
 ![oder confirmation](documentation/testing/order-confirmation.PNG)
+20. Confirmation email: Customer recieves confirmation email after checkout process. PASSED
+![oder confirmation email](documentation/testing/order-confirmation-email.PNG)
+21. Order history: Customer order history will appear on their profile after ordering. PASSED
+![oder history](documentation/testing/order-history.PNG)
+22. Newsletter: Users can sign up to be part of our mailing list. PASSED
+![Newsletter](documentation/testing/newsletter.PNG)
+23. Social Media: Social media icons open up in new tab. Facebook business page connected. PASSED
+![Social Media](documentation/testing/social-media.PNG)
+![Facebook](documentation/testing/facebook.PNG)
+24. Update profile: Fill out form on profile page to update profile information. PASSED
+25. Local Skateparks: Click locations to bring user to that point on the map: PASSED
+26. Privacy policy: Click privacy policy link in footer to bring me to privacy policy page. PASSED
