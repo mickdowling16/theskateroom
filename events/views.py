@@ -10,7 +10,7 @@ from django.conf import settings
 
 
 def event_list(request):
-    events = Event.objects.all()
+    events = Event.objects.all().order_by('date')
     return render(request, 'events/event_list.html', {'events': events})
 
 
