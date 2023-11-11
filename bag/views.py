@@ -84,22 +84,40 @@ def adjust_bag(request, item_id):
 
     if size:
         if quantity > 0:
-            bag[item_id]['items_by_size'][size] = quantity
-            messages.success(
-                request, f'Updated size {size.upper()} {product.name} quantity to {bag[item_id]["items_by_size"][size]}')
+            # Check if adjusting the quantity exceeds the available stock
+            if product.stock + bag[item_id]['items_by_size'][size] >= quantity:
+                product.stock += bag[item_id]['items_by_size'][size] - quantity
+                bag[item_id]['items_by_size'][size] = quantity
+                product.save()
+                messages.success(
+                    request, f'Updated size {size.upper()} {product.name} quantity to {bag[item_id]["items_by_size"][size]}')
+            else:
+                messages.error(
+                    request, f'Not enough stock available for {product.name}. Reduce quantity and try again.')
         else:
+            product.stock += bag[item_id]['items_by_size'][size]
             del bag[item_id]['items_by_size'][size]
             if not bag[item_id]['items_by_size']:
                 bag.pop(item_id)
+            product.save()
             messages.success(
                 request, f'Removed size {size.upper()} {product.name} from your bag')
     else:
         if quantity > 0:
-            bag[item_id] = quantity
-            messages.success(
-                request, f'Updated {product.name} quantity to {bag[item_id]}')
+            # Check if adjusting the quantity exceeds the available stock
+            if product.stock + bag[item_id] >= quantity:
+                product.stock += bag[item_id] - quantity
+                bag[item_id] = quantity
+                product.save()
+                messages.success(
+                    request, f'Updated {product.name} quantity to {bag[item_id]}')
+            else:
+                messages.error(
+                    request, f'Not enough stock available for {product.name}. Reduce quantity and try again')
         else:
+            product.stock += bag[item_id]
             bag.pop(item_id)
+            product.save()
             messages.success(request, f'Removed {product.name} from your bag')
 
     request.session['bag'] = bag
@@ -117,13 +135,17 @@ def remove_from_bag(request, item_id):
         bag = request.session.get('bag', {})
 
         if size:
+            product.stock += bag[item_id]['items_by_size'][size]
             del bag[item_id]['items_by_size'][size]
             if not bag[item_id]['items_by_size']:
                 bag.pop(item_id)
+            product.save()
             messages.success(
                 request, f'Removed size {size.upper()} {product.name} from your bag')
         else:
+            product.stock += bag[item_id]
             bag.pop(item_id)
+            product.save()
             messages.success(request, f'Removed {product.name} from your bag')
 
         request.session['bag'] = bag
