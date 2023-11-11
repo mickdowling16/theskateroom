@@ -84,27 +84,27 @@
 <script>
     var csrftoken = $("[name=csrfmiddlewaretoken]").val(); // Get the CSRF token from the page
 
-    // Function to submit a new comment
-    function submitComment(text, event_id) {
-        $.ajax({
-            type: "POST",
-            url: "{% url 'comments:add_comment' event.id %}",
-            data: { text: text },
-            headers: { "X-CSRFToken": csrftoken },
-            success: function (data) {
-                if (data.success) {
-                    // Format the date using toLocaleDateString
-                    var commentDate = new Date(data.date).toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
-                        hour: 'numeric',
-                        minute: 'numeric',
-                        second: 'numeric',
-                        hour12: true
-                    });
+// Function to submit a new comment
+function submitComment(text, event_id) {
+    $.ajax({
+        type: "POST",
+        url: "{% url 'comments:add_comment' event.id %}",
+        data: { text: text },
+        headers: { "X-CSRFToken": csrftoken },
+        success: function (data) {
+            if (data.success) {
+                // Format the date using toLocaleDateString
+                var commentDate = new Date(data.date).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    second: 'numeric',
+                    hour12: true
+                });
 
-                    var commentHtml = `
+                var commentHtml = `
                     <div class="comment" id="comment-${data.id}">
                         <strong><p>${data.user}</strong> (${commentDate}):</p>
                         <p>${data.text}</p>
@@ -116,58 +116,58 @@
                             <i class="fa-solid fa-trash" style="color: #471d5c;"></i> Delete
                         </button>
                     </div>`;
-                    $("#comments").append(commentHtml);
-                    // Clear the input field after submission
-                    $("#comment-form textarea[name='text']").val('');
-                }
-            },
-            error: function (xhr, status, error) {
-                console.error("Submit Comment Error:", error);
+                $("#comments").append(commentHtml);
+                // Clear the input field after submission
+                $("#comment-form textarea[name='text']").val('');
             }
-        });
-    }
+        },
+        error: function (xhr, status, error) {
+            console.error("Submit Comment Error:", error);
+        }
+    });
+}
 
-    // Submit a new comment when the 'comment-submit' button is clicked
-    $("#comment-form").submit(function (e) {
-        e.preventDefault(); // Prevent the default form submission
-        var text = $("#comment-form textarea[name='text']").val();
-        var event_id = {{ event.id }
-    };
+// Submit a new comment when the 'comment-submit' button is clicked
+$("#comment-form").submit(function (e) {
+    e.preventDefault(); // Prevent the default form submission
+    var text = $("#comment-form textarea[name='text']").val();
+    var event_id = {{ event.id }};
     submitComment(text, event_id);
-    });
+});
 
-    // Like a comment
-    $(document).on("click", ".like-comment-button", function () {
-        var commentId = $(this).data("comment-id");
-        var self = $(this);
-        $.ajax({
-            type: "POST",
-            url: "{% url 'comments:like_comment' 0 %}".replace(0, commentId),
-            headers: { "X-CSRFToken": csrftoken }, // Include the CSRF token in the headers
-            success: function (data) {
-                if (data.liked) {
-                    var likeCount = self.siblings(".like-count");
-                    likeCount.text(data.like_count);
-                }
+// Like a comment
+$(document).on("click", ".like-comment-button", function () {
+    var commentId = $(this).data("comment-id");
+    var self = $(this);
+    $.ajax({
+        type: "POST",
+        url: "{% url 'comments:like_comment' 0 %}".replace(0, commentId),
+        headers: { "X-CSRFToken": csrftoken }, // Include the CSRF token in the headers
+        success: function (data) {
+            if (data.liked) {
+                var likeCount = self.siblings(".like-count");
+                likeCount.text(data.like_count);
             }
-        });
+        }
     });
+});
 
-    function deleteComment(commentId) {
-        $.ajax({
-            type: "POST",
-            url: "/delete_comment/" + commentId + "/",
-            headers: { "X-CSRFToken": csrftoken },
-            success: function (data) {
-                if (data.success) {
-                    // Comment deleted successfully, remove it from the page.
-                    $('#comment-' + commentId).remove();
-                } else {
-                    // Display an error message to the user.
-                    alert(data.error);
-                }
+function deleteComment(commentId) {
+    $.ajax({
+        type: "POST",
+        url: "/delete_comment/" + commentId + "/",
+        headers: { "X-CSRFToken": csrftoken },
+        success: function (data) {
+            if (data.success) {
+                // Comment deleted successfully, remove it from the page.
+                $('#comment-' + commentId).remove();
+            } else {
+                // Display an error message to the user.
+                alert(data.error);
             }
-        });
-    }
+        }
+    });
+}
+
 </script>
 {% endblock %}

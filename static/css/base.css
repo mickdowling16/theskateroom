@@ -182,7 +182,7 @@ a.category-badge>span.badge:hover {
 .btn-black:active,
 .btn-black:focus .secondary-button:hover,
 .secondary-button:active,
-.secondary-button:focus,
+.secondary-button:focus
 {
 background: #222;
 color: white;
@@ -500,7 +500,6 @@ color: white;
 .allauth-form-inner-content input[type='submit']:hover {
     color: #fff;
     background-color: #222;
-    border-color: #222;
 }
 
 .allauth-form-inner-content a {
@@ -511,7 +510,6 @@ color: white;
 
 #mc_embed_signup {
     background: #222;
-    false;
     clear: left;
     font: 14px Helvetica, Arial, sans-serif;
     width: 500px;
