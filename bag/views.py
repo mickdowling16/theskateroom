@@ -25,66 +25,51 @@ def add_to_bag(request, item_id):
 
     bag = request.session.get('bag', {})
 
+    sale_successful = False
+
     if size:
         if item_id in list(bag.keys()):
             if size in bag[item_id]['items_by_size'].keys():
-                # Check if adding the requested quantity exceeds the available stock
                 if product.stock >= quantity:
                     bag[item_id]['items_by_size'][size] += quantity
-                    product.stock -= quantity
-                    product.save()
-                    messages.success(
-                        request, f'Updated size {size.upper()} {product.name} quantity to {bag[item_id]["items_by_size"][size]}')
+                    sale_successful = True
                 else:
-                    messages.error(
-                        request, f'Not enough stock available for {product.name}.')
+                    messages.error(request, f'Not enough stock available for {product.name}.')
             else:
-                # Check if adding the requested quantity exceeds the available stock
                 if product.stock >= quantity:
                     bag[item_id]['items_by_size'][size] = quantity
-                    product.stock -= quantity
-                    product.save()
-                    messages.success(
-                        request, f'Added size {size.upper()} {product.name} to your bag')
+                    sale_successful = True
                 else:
-                    messages.error(
-                        request, f'Not enough stock available for {product.name}.')
+                    messages.error(request, f'Not enough stock available for {product.name}.')
         else:
-            # Check if adding the requested quantity exceeds the available stock
             if product.stock >= quantity:
                 bag[item_id] = {'items_by_size': {size: quantity}}
-                product.stock -= quantity
-                product.save()
-                messages.success(
-                    request, f'Added size {size.upper()} {product.name} to your bag')
+                sale_successful = True
             else:
-                messages.error(
-                    request, f'Not enough stock available for {product.name}.')
+                messages.error(request, f'Not enough stock available for {product.name}.')
     else:
         if item_id in list(bag.keys()):
-            # Check if adding the requested quantity exceeds the available stock
             if product.stock >= quantity:
                 bag[item_id] += quantity
-                product.stock -= quantity
-                product.save()
-                messages.success(
-                    request, f'Updated {product.name} quantity to {bag[item_id]}')
+                sale_successful = True
             else:
-                messages.error(
-                    request, f'Not enough stock available for {product.name}.')
+                messages.error(request, f'Not enough stock available for {product.name}.')
         else:
-            # Check if adding the requested quantity exceeds the available stock
             if product.stock >= quantity:
                 bag[item_id] = quantity
-                product.stock -= quantity
-                product.save()
-                messages.success(request, f'Added {product.name} to your bag')
+                sale_successful = True
             else:
-                messages.error(
-                    request, f'Not enough stock available for {product.name}.')
+                messages.error(request, f'Not enough stock available for {product.name}.')
+
+    # Update stock only if the sale is successful
+    if sale_successful:
+        product.stock -= quantity
+        product.save()
+        messages.success(request, f'Successfully added {quantity} {product.name} to your bag.')
 
     request.session['bag'] = bag
     return redirect(redirect_url)
+
 
 
 def adjust_bag(request, item_id):
