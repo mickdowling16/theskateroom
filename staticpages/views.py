@@ -29,3 +29,6 @@ def contact(request):
 
 def skateparks(request):
     return render(request, 'staticpages/skateparks.html')
+
+def policy(request):
+    return render(request, 'staticpages/policy.html')

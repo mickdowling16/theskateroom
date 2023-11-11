@@ -518,6 +518,11 @@ color: white;
     color: white;
 }
 
+.privacy {
+    text-align: center;
+    font-size: small;
+}
+
 
 /* -------------------------..................................------- Media Queries */
 
