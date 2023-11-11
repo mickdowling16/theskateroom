@@ -1,10 +1,10 @@
 # The Skate Room
 
-The Skate Room is an online store and community for the skaters of Ireland. The skate store sells skateboards, skate apparel and accessories and provides information to users on local events and skate park get togethers. The Skate Room is more than an online store, it is a community run by skaters for skaters.
+The Skate Room is an online store and community for the skaters of Ireland. The skate store sells skateboards, skate apparel and accessories and provides information to users on local events, skate park get togethers and locations of skateparks around Irealnd. The Skate Room is more than an online store, it is a community run by skaters for skaters. The idea is to create a one stop shop for all things skating.
 
 ## Strategy
 
-I stTarted my project by outlining my startegy and thinking about my target audience and the features they would need.
+I started my project by outlining my startegy and thinking about my target audience and the features they would need.
 
 The target audience for The Skare Room is
 
@@ -20,7 +20,184 @@ Users will be looking for
 - Information about meet ups, competitions and new skate parks
 - Keep up to date with special offers, new events and social gatherings
 
-My website will try to offer users these features in a clean and intuitive way. The design hopes to appeal to the target audience with a cool skate vibe and be a website which is shared around the skate community. My aim is to become a one stop shop for news, competition info, skating apparel and accessories and custom board design. My website will have to be fully responsive to be available on the go on all device sizes. I will use Bootstrap grids and elements & custom CSS to achieve this.
+My website will try to offer users these features in a clean and intuitive way. The design hopes to appeal to the target audience with a cool skate vibe and be a website which is shared around the skate community. My aim is to become a one stop shop for news, competition info, skating apparel and accessories. My website will have to be fully responsive to be available on the go on all device sizes. I will use Bootstrap grids and elements & custom CSS to achieve this.
+
+# Design
+
+The design for this project is based off of skatepark culture and brands such as Converse, Vans and DC. The design I'm going for is a simple look with eye catching event images and a purple main brand colour used troughtout. The font im using for heading is Russo One and the font for the body is Kanit. I got these fonts from Google fonts.
+
+# Features
+
+My online store contains plenty of features to benefit my users and make my site user friendly. The landing page contains the main navigation and user menus along with call to action buttons to visit the store or view events. Further down on the homepage is where the upcoming events are displayed. This is important to be on the homepage as my website isn't primarily an online store it is a community for skaters to get news and updates on events along with being able to update their skating setup in the store.
+
+### Navigation
+
+My main navigation appears just under the site logo and search bar. From this navigation users can access the products on my website as well as the extra skate section to view upcoming events, get in contact or find a skatepark near them. The navigation is styled with bootstrap and uses dropdown menus to access further pages.
+
+<details>
+  <summary>Main Nav</summary>
+
+  ![Main Nav](./documentation/main-nav.PNG)
+  
+</details>
+
+### Hero Image
+
+The hero image on my site is the first image the user sees when they access the website. It is an image of the inside of a skateboard shop with an overlay and text saying 'Welcome to the skate room' along with two buttons, one for the products page and one for events. This image sets the tone of the website and lets the user know straight away that it is a skating website.
+
+<details>
+  <summary>Hero Image</summary>
+  
+  ![Hero Image](./documentation/hero-image.PNG)
+
+</details>
+
+
+### Upcoming Events
+
+On the homepage under the hero image is the upcoming events section. This displays the 3 closest events in a bootstrap card with a button to view more details. This will automatically update with new events when they are added to always show the 3 closest ones. The upcoming events heading is also a link to bring the user to the full events page.
+
+<details>
+  <summary>Events</summary>
+
+  ![Events](./documentation/homepage-events.PNG)
+  
+</details>
+
+
+### Footer
+
+The footer is simple and contains links to The Skate Room social media and Facebook business page so users can easily follow us on social media and keep up to date with the brand. The footer also contains a sign up form embedded from mailchimp to subscribe to a newsletter about any new upcoming events or special offers. Under this is a link to my privacy policy.
+
+<details>
+  <summary>Footer</summary>
+
+  ![Footer](./documentation/footer.PNG)
+  
+</details>
+
+
+### Products page
+
+The main products page shows all products on the website and can be sorted by a number of different variables such as price and rating. The products are displayed on bootstrap cards with the price, category, image, name and rating easily visable.
+
+<details>
+  <summary>Products</summary>
+
+  ![Products](./documentation/products-page.PNG)
+  
+</details>
+
+
+### Product Detail Page
+
+This page is accessed when a user clicks on a product they would like to purchase. This page features a description of the product, an option to select quantity and size and an add to cart button which updates the shopping cart with the product. When an item is out of stock the user will not be able to add it to the bag.
+
+<details>
+  <summary>Product Detail</summary>
+
+  ![ Product Detail](./documentation/product-details.PNG)
+  
+</details>
+
+
+### Product Management
+
+This page is only accessable to logged in admins and it is where new products can be added. The form can be filled out with product details and an image. This then adds the product to the neccessary category.
+
+<details>
+  <summary>Product Management</summary>
+
+  ![Product Management](./documentation/edit-product.PNG)
+  
+</details>
+
+
+### Local Skate Parks
+
+This page maps out skateparks around Ireland for users to find local skateparks to them. I did this by using Leaflet and plotting the longitude and lattitude of the skateparks into javascript code. This then populated the map with the locations.
+
+<details>
+  <summary>Skateparks</summary>
+
+  ![Skateparks](./documentation/skateparks.PNG)
+  
+</details>
+
+
+### Contact Us
+
+The contact page allows users to get in touch with The Skate Room with any questions or queries and sends and email to us when the form is submitted.
+
+<details>
+  <summary>Contact</summary>
+
+  ![Contact](./documentation/contact.PNG)
+  
+</details>
+
+
+### Events page
+
+The events page allows users to see all upcoming events displayed on bootstrap cards similar to that of the products. When an event is clicked a user can see more information about the event and a button to register your interest. This button brings the user to a form which they can fill out to register for the event. The form contains a drop down menu for the user to select the event they wish to register for. When submitted this sends an automated email to the skate room with the users details. An admin can also edit or delete events from this page when logged in.
+
+<details>
+  <summary>Events</summary>
+
+  ![Events page 1 ](./documentation/upcoming-event-1.PNG)
+
+  ![Events page 2 ](./documentation/upcoming-event-2.PNG)
+  
+</details>
+
+
+### Event Management
+
+This page is only accessable to logged in admins and it is where new events can be added. The form can be filled out with event details and an image to add to the events page.
+
+<details>
+  <summary>Mangement</summary>
+
+  ![Event Management](./documentation/event-management.PNG)
+  
+</details>
+
+### Comments
+
+This allows logged in users to comment on events. Users can also like other users comments and delete their own comments.
+
+<details>
+  <summary>Comments Section</summary>
+
+  ![Comments](./documentation/comment.PNG)
+  
+</details>
+
+## CRUD Functionality
+
+I have implemented CRUD functionality into this project by allowing an admin the ability to fully manage products and events on this website. Admins can add, edit or delete products and events from the admin panel. This allows full control over all content on the website.
+
+This functionality represents the features needed to manage a real world eccommerce website. Product information, price and inventory needs to be kept up to date in order to have a free flowing working website and the product and event management pages allow for this. 
+
+## Agile Methodology
+
+I used GitHub to implement agile methodology into this project by creating user stories in my repository and using these to plan out my project and features to implement based on importance to achive a MVP. I assigned these user stories to larger epics to better manage each feature of the website.
+
+![Kanban Board](./documentation/project-board.PNG)
+
+I mapped out my user stories using issues on Github. I gave them a label based on importance and moved them to complete as they were finished. In the end I completed all my user stories for this project.
+
+![User Stories](./documentation/user-stories.PNG)
+
+
+## MoSCoW Prioritization
+
+I used MoSCow prioritization to prioritze my user stories and make sure to implement the neccessary features. I added labels to my user stories in issues on github to do this
+
+- Must Have: guaranteed to be delivered
+- Should Have: adds significant value, but not vital
+- Could Have: has small impact if left out
+- Won't Have: not a priority for this iteration
 
 ## User Stories
 
@@ -64,6 +241,7 @@ My user stories are split into epics, displayed below and also mapped out using 
 - As a user I want to easily be able to log in and log out of my account
 - As a user I want to save my default shipping address to save time on my next purchase
 - As a user I want to easily add, edit or remove my profile information to keep it up to date and accurate
+- As a user I want to join in on the conversation and be able to add comments and interact with users
 
 ### Epic 7 - Marketing
 
@@ -71,55 +249,8 @@ My user stories are split into epics, displayed below and also mapped out using 
 - As an admin I want to creat a facebook business page so users can follow us on social media and create a community
 - As an admin I want to add keywords and utilised SEO to increase website traffic and ranking.
 
-# Design
 
-The design for this project is based off of skatepark culture and brands such as Converse, Vans and DC. The design I'm going for is black and white with thick black font and heavy lines used throughout. The font im using for heading is Russo One and the font for the body is Kanit. I got these fonts from Google fonts. I use accents of yellow throughout the website to add a bit of colour where needed but mainly my site is going to be black and white.
-
-# Features
-
-My online store contains plenty of features to benefit my users and make my site user friendly. The landing page contains the main navigation and user menus along with a call to action to visit the store. Further down on the homepage is where the upcoming events are displayed. This is important to be on the homepage as my website isn't primarily a online store it is a community for skater to get news and updates on events along with being able to update their skating setu  in the store.
-
-### Navigation
-
-My main navigation appears just under the site logo and search bar. From this navigation users can access the products on my website as well as the extra skate section to view upcoming events, get in contact or request custom boards. The navigation is styled with bootstrap and uses dropdown menus to access further pages.
-
-### Hero Image
-
-The hero image on my site is the first image the user sees when they access the website. It is a large image of a skateboard with an overlay and text saying 'Welcome to the skate room' along with a button to bring them to the products page. This image sets the tone of the website and lets the user know straight away that it is a skating website.
-
-### Upcoming Events
-
-On the homepage under the hero image is the upcoming events section. This displays the 3 closest events in a bootstrap card with a button to view more details. This will automatically update with new events when they are added to always show the 3 closest ones. Under this is a button to access the events page to see all events.
-
-### Footer
-
-The footer is simple and contains links to The Skate Room social media and Facebook business page so users can easily follow us on social media and keep up to date with the brand. The footer also contains a sign up form embedded from mailchimp to subscribe to a newsletter about any new upcoming events or special offers.
-
-### Products page
-
-The main products page shows all products on the website and can be sorted by a number of different variables such as price and rating. The products are displayed on bootstrap cards with the price, category, image, name and rating easily visable.
-
-### Product Detail Page
-
-This page is accessed when a user clicks on a product they would like to purchase. This page features a description of the product, an option to select quantity and size and an add to cart button which updates the shopping cart with the product.
-
-### Custom Boards Page
-
-This page allows a user to fill out a form to query on a custom skate board. Users can fill out the form with their desired board, wheels and trucks and can add an image of their choosing to be printed on the board. This is then sent to us for a quote for the custom board build.
-
-### Contact Us
-
-The contact page allows users to get in touch with The Skate Room with any questions or queries and sends and email to us when the form is submitted.
-
-### Events page
-
-The events page allows users to see all upcoming events displayed on bootstrap cards similar to that of the products. When an event is clicked a user can see more information about the event and a button to register your interest. This button brings the user to a form which they can fill out to register for the event. The form is pre loaded with the event they clicked through on or they can change event in the dropdown. When submitted this sends an automated email to the customer with confirmation of registration and a registration number for the event. An admin can also edit or delete events from this page when logged in.
-
-### Add an event page
-
-This page is only accessable to logged in admins and it is where new events can be added. The form can be filled out with event details and an image to add to the events page.
-
-# Models
+## Models Used
 
 I used a variety of models in my project. Both custom models and models from the Boutique Ado walkthrough project. Below are all my models represented in a table
 
@@ -207,9 +338,13 @@ I used a variety of models in my project. Both custom models and models from the
 - [Amazon Web Services](https://aws.amazon.com/free/?trk=e747cc26-a307-4ae0-981a-6dc5c1cb4121&sc_channel=ps&ef_id=CjwKCAiA3aeqBhBzEiwAxFiOBmiu8xFBH9IvqKB-2wBMY_Wofr2lvZHKx9SM24yUNUuGBm7Y8XuhZxoCTPMQAvD_BwE:G:s&s_kwcid=AL!4422!3!453053794221!e!!g!!amazon%20aws!10705896207!102406403021) used for online static file storage.
 - [Gmail](https://www.google.com/gmail/about/) used to create send and recieve emails from users.
 
+## Testing
+
+My testing can be found in [testing.md](https://skate-room-fa0d77babcb9.herokuapp.com/)
+
 ## Deployment
 
-My app is found deployed on Heroku.
+My app is found deployed on Heroku. [Deployed site](https://skate-room-fa0d77babcb9.herokuapp.com/)
 
 ### ElephantSQL Database
 
@@ -224,6 +359,15 @@ To obtain your own Postgres Database, sign-up with your GitHub account, then fol
 - Now click on your new database name, where you can view the database URL and Password.
 
 ### Amazon Web Services
+
+I used Amazon web services for static files storage. 
+
+- Create a free AWS account.
+- Add S3 and IAM services to your account
+- In S3 create a new bucket with name of project
+- In IAM create new User Group.
+- Create a policy
+- Attach the policy
 
 ### Heroku Deployment
 
@@ -325,3 +469,12 @@ By forking the GitHub Repository, we make a copy of the original repository on o
 1. Log in to GitHub and locate my GitHub Repository
 2. At the top of the Repository just above the "Settings" Button on the menu, locate the "Fork" Button.
 3. Once clicked, you should now have a copy of the original repository in your own GitHub account!
+
+## Credits
+
+During the building of my Django app I used a number of different resources to help me complete my project. Below they are all referenced
+
+- Code institue Boutique Ado walkthrough project. This project was the base of my website. It was key to my understanding of building a eccommerce site and I've taken lots of code from this project. I have added my own features and styles to make it my own but this was a big help during the build
+- The [Django Documentation](https://docs.djangoproject.com/en/4.2/) helped guide me through issues with setting up my views and models in the early part of my project development.
+- The [Codemy.com](https://www.youtube.com/@Codemycom) Youtube channel was a great resource to help me understand adding a comments app for my events. I found his videos very informative and easy to follow.
+- The [Django Cheatsheet](https://cheatography.com/lewiseason/cheat-sheets/django-models/) helped me with the terminology for making my models
