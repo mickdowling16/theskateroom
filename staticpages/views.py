@@ -1,7 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponseRedirect, redirect
 from django.core.mail import send_mail
 from django.contrib import messages
-from django.http import HttpResponseRedirect
 from .forms import ContactForm
 
 def contact(request):
@@ -11,16 +10,17 @@ def contact(request):
             # Process the form data
             subject = 'Contact Form Submission'
             message = f"Name: {form.cleaned_data['name']}\nEmail: {form.cleaned_data['email']}\nMessage: {form.cleaned_data['message']}"
-            from_email = 'theskateroom@example.com'
-            recipient_list = ['theskateroom2023@gmail.com'] 
+            from_email = 'your_email@example.com'  # Update with your email
+            recipient_list = ['theskateroom2023@gmail.com']  # Update with recipient email(s)
 
             # Send the email
             send_mail(subject, message, from_email, recipient_list)
 
-            # Display success message when form submitted
-            messages.success(request, 'Contact form submitted.')
+            # Add a success message
+            messages.success(request, 'Your message was sent successfully!')
 
-            return redirect('home')
+            # Redirect to the home page after successful submission
+            return redirect('home')  # Update with the actual name or URL of your home page
 
     else:
         form = ContactForm()

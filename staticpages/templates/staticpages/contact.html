@@ -15,7 +15,7 @@
     <hr class="thin-line">
     <p>Thank you for your interest in our company. Please fill out the form below to get in touch with us:</p>
 
-    <form method="post" class="mt-4">
+    <form method="post" action="{% url 'contact' %}" class="mt-4">
     {% csrf_token %}
     <div class="form-group">
         <input type="text" name="{{ form.name.name }}" class="form-control" placeholder="Your Name">
