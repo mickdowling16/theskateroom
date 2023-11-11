@@ -1,0 +1,505 @@
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    height: calc(100vh - 300px);
+    color: #555;
+    font-family: 'Kanit', sans-serif;
+    width: 100%;
+}
+
+.hero-image {
+    background: url('/media/skateboard-wall.jpg') no-repeat center center fixed;
+    box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.7);
+    background-size: cover;
+}
+
+h1 {
+    font-family: 'Russo One', sans-serif;
+}
+
+.thick-line {
+    border: 5px solid white;
+    border-radius: 5px;
+}
+
+.thin-line {
+    border: 3px solid #555;
+    border-radius: 3px;
+    color: #555;
+}
+
+.homepage-btn {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.hero-section {
+    height: 600px;
+}
+
+/* from Bulma */
+.icon {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+.logo-font {
+    text-transform: uppercase;
+    color: white;
+    font-weight: 900;
+}
+
+.text-white {
+    color: white;
+}
+
+.main-logo-link {
+    width: fit-content;
+}
+
+.shop-now-button {
+    background: #471d5c;
+    color: white;
+    min-width: 260px;
+    border-radius: 20px;
+}
+
+.secondary-button {
+    background: #ffd51c;
+    color: black;
+    min-width: 40px;
+    font-weight: 700;
+}
+
+a.category-badge>span.badge:hover {
+    background: #212529 !important;
+    color: #fff !important;
+}
+
+.btt-button {
+    height: 42px;
+    width: 42px;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+}
+
+.btt-link,
+.update-link,
+.remove-item {
+    cursor: pointer;
+}
+
+.btn-black {
+    background: #471d5c;
+    color: white;
+}
+
+.btn-outline-black {
+    background: white;
+    color: #471d5c !important;
+    border: 1px solid #471d5c;
+}
+
+.btn-outline-black:hover,
+.btn-outline-black:active,
+.btn-outline-black:focus {
+    background: #471d5c;
+    color: white !important;
+}
+
+.shop-now-button:hover,
+.shop-now-button:active,
+.shop-now-button:focus,
+.btn-black:hover,
+.btn-black:active,
+.btn-black:focus .secondary-button:hover,
+.secondary-button:active,
+.secondary-button:focus,
+{
+background: #222;
+color: white;
+}
+
+.text-black {
+    color: #000 !important;
+}
+
+.brand-purple {
+    color: #471d5c;
+}
+
+.border-black {
+    border: 1px solid black !important;
+}
+
+.bg-black {
+    background: #000 !important;
+}
+
+.footer-heading {
+    text-transform: uppercase;
+    color: white;
+    margin-left: 50px;
+    padding-top: 30px;
+}
+
+#footer {
+    background-color: #000;
+    height: 250px;
+    width: 100%;
+}
+
+.wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1;
+}
+
+.social-icons {
+    margin-left: 50px;
+    padding-top: 20px;
+}
+
+.icon-style {
+    padding-left: 8px;
+    font-size: 1.8rem;
+}
+
+.img-size {
+    height: 300px;
+    width: 250px;
+}
+
+.event-img {
+    width: 200px;
+}
+
+.push-down-content {
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.homepage-text {
+    margin-top: 250px;
+}
+
+.homepage-events-div {
+    height: 900px;
+    margin-top: 80px;
+}
+
+.contact-us {
+    height: 900px;
+}
+
+.event-details-page {
+    height: 1500px;
+}
+
+/*..................................Nav bar */
+
+#main-nav {
+    background-color: #471d5c;
+}
+
+.background-purple {
+    background-color: #471d5c;
+}
+
+/*..................................Comments */
+
+.comments-container {
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.comment {
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #d3dbd5;
+    border-radius: 5px;
+}
+
+.like-comment-button {
+    background-color: #471d5c;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.skate-room-button {
+    background-color: #471d5c;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.skate-room-button:hover {
+    background-color: white;
+    color: #471d5c;
+    border: 1px solid #471d5c;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.delete-comment-button {
+    background-color: transparent;
+    color: black;
+    border: 2px solid #471d5c;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.submit-comment-button {
+    background-color: #471d5c;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.date-of-comment {
+    font-size: small;
+    font-style: italic;
+}
+
+.like-count {
+    margin-left: 10px;
+}
+
+#comment-form {
+    margin-top: 20px;
+}
+
+/*..................................All auth styles */
+
+.sign-out-template {
+    margin-bottom: 50px;
+}
+
+/*..................................Messages */
+
+.message-container {
+    position: fixed;
+    top: 72px;
+    right: 15px;
+    z-index: 99999999999;
+}
+
+.custom-toast {
+    overflow: visible;
+}
+
+.toast-capper {
+    height: 2px;
+}
+
+.arrow-up {
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-bottom: 10px solid black;
+    position: absolute;
+    top: -10px;
+    right: 36px;
+}
+
+/* Convenience classes - colors copied from Bootstrap */
+.arrow-primary {
+    border-bottom-color: #007bff !important;
+}
+
+.arrow-secondary {
+    border-bottom-color: #6c757d !important;
+}
+
+.arrow-success {
+    border-bottom-color: #28a745 !important;
+}
+
+.arrow-danger {
+    border-bottom-color: #dc3545 !important;
+}
+
+.arrow-warning {
+    border-bottom-color: #ffc107 !important;
+}
+
+.arrow-info {
+    border-bottom-color: #17a2b8 !important;
+}
+
+.arrow-light {
+    border-bottom-color: #f8f9fa !important;
+}
+
+.arrow-dark {
+    border-bottom-color: #343a40 !important;
+}
+
+.bag-notification-wrapper {
+    height: 100px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/*..................................Form Styles */
+
+.form-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.form-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0 10px;
+    background-color: white;
+    color: #000;
+    transition: 0.3s;
+    pointer-events: none;
+}
+
+.select-box {
+    width: 200px;
+    height: 50px;
+}
+
+.form-control {
+    border: none;
+    border-bottom: 2px solid #000;
+    width: 100%;
+    padding: 10px;
+}
+
+.form-control:focus+.form-label,
+.form-control:valid+.form-label {
+    top: -20px;
+    font-size: 14px;
+    color: #000;
+    background-color: white;
+}
+
+/*..................................Allauth styles */
+
+.allauth-form-inner-content p {
+    margin-top: 1.5rem;
+    color: #6c757d;
+}
+
+.allauth-form-inner-content input {
+    border-color: #000;
+    border-radius: 0;
+}
+
+.allauth-form-inner-content label:not([for='id_remember']) {
+    display: none;
+}
+
+.allauth-form-inner-content input::placeholder {
+    color: #aab7c4;
+}
+
+.allauth-form-inner-content button,
+.allauth-form-inner-content input[type='submit'] {
+    display: inline-block;
+    font-weight: 400;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #000;
+    border: 1px solid #000;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0;
+
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.allauth-form-inner-content button:hover,
+.allauth-form-inner-content input[type='submit']:hover {
+    color: #fff;
+    background-color: #222;
+    border-color: #222;
+}
+
+.allauth-form-inner-content a {
+    color: #17a2b8;
+}
+
+/*..................................Mailchimp form styles */
+
+#mc_embed_signup {
+    background: black;
+    false;
+    clear: left;
+    font: 14px Helvetica, Arial, sans-serif;
+    width: 500px;
+    color: white;
+}
+
+
+/* -------------------------------- Media Queries */
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 80%;
+    }
+}
+
+/* fixed top navbar only on medium and up */
+@media (min-width: 992px) {
+    .fixed-top-desktop-only {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 1030;
+    }
+
+    .header-container {
+        padding-top: 164px;
+    }
+}
+
+/* pad the top a bit when navbar is collapsed on mobile */
+@media (max-width: 991px) {
+    .header-container {
+        padding-top: 116px;
+    }
+
+    body {
+        height: calc(100vh - 116px);
+    }
+}
