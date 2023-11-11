@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="container contact-us">
+<div class="container bottom-margins">
     <h1>Local Skate Parks</h1>
     <hr class="thin-line">
     <p>Find local skateparks near you!</p>
@@ -20,7 +20,6 @@
           </div>
           <div class="col-md-6">
             <ul class="list-group" id="park-list">
-              <!-- List items will be added dynamically -->
             </ul>
           </div>
         </div>
@@ -32,7 +31,7 @@
 
 {% block postloadjs %}    
     <script>
-        var map = L.map('map').setView([53.349805, -6.26031], 7); // Dublin coordinates
+        var map = L.map('map').setView([53.349805, -6.26031], 7); // starting coordinates
     
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© OpenStreetMap contributors'

@@ -188,6 +188,10 @@ background: #222;
 color: white;
 }
 
+#park-list {
+    cursor: pointer;
+}
+
 /* ...................................................... Text Colours*/
 
 .text-black {
