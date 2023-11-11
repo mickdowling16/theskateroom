@@ -32,11 +32,11 @@
     </div>
 </div>
 </div>
-<div class="container homepage-events-div">
+<div class="container homepage-events-div bottom-margins">
     <div class="row">
         <div class="col-12">
             <h1>
-                Upcoming Skate Events
+                <a href="{% url 'events:event_list' %}" class="h1-link">Upcoming Skate Events <i class="h1-link fa-solid fa-circle-arrow-right" style="color: #555555;"></i></a>
             </h1>
             <hr class="thin-line">
         </div>
@@ -54,11 +54,6 @@
                 </div>
             </div>
         {% endfor %}
-            <div class="homepage-btn text-center">
-                <h4>
-                    <a href="{% url 'events:event_list' %}" class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3">Take Me to Events</a>
-                </h4>
-            </div>
     </div>
 </div>
 

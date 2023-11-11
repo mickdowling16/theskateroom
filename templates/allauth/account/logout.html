@@ -9,7 +9,7 @@
 <hr class="thin-line">
 <p>{% trans 'Are you sure you want to sign out?' %}</p>
 
-<div class="sign-out-template">
+<div class="bottom-margins">
 <form method="post" action="{% url 'account_logout' %}">
   {% csrf_token %}
   {% if redirect_field_value %}

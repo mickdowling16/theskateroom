@@ -1,3 +1,5 @@
+/* ...................................................... Main Page Styles*/
+
 html {
     height: 100%;
     width: 100%;
@@ -18,6 +20,16 @@ body {
 
 h1 {
     font-family: 'Russo One', sans-serif;
+}
+
+.h1-link {
+    text-decoration: none;
+    color: #555;
+}
+
+.h1-link:hover {
+    text-decoration: none;
+    color: #888;
 }
 
 .thick-line {
@@ -44,6 +56,18 @@ h1 {
 
 .hero-section {
     height: 600px;
+}
+
+/* ...................................................... Spacing and Margins*/
+
+
+.bottom-margins {
+    margin-bottom: 100px;
+}
+
+.push-down-content {
+    margin-top: 100px;
+    margin-bottom: 100px;
 }
 
 /* from Bulma */
@@ -76,6 +100,28 @@ h1 {
 
 .main-logo-link {
     width: fit-content;
+}
+
+/* ...................................................... Buttons*/
+
+.skate-room-button {
+    background-color: #471d5c;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.skate-room-button:hover {
+    background-color: white;
+    color: #471d5c;
+    border: 1px solid #471d5c;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
 }
 
 .shop-now-button {
@@ -142,6 +188,8 @@ background: #222;
 color: white;
 }
 
+/* ...................................................... Text Colours*/
+
 .text-black {
     color: #000 !important;
 }
@@ -150,17 +198,25 @@ color: white;
     color: #471d5c;
 }
 
+/* ...................................................... Background Colours*/
+
 .bg-brand {
     background-color: #222;
+}
+
+.bg-brand-purple {
+    background-color: #471d5c;
+}
+
+.bg-black {
+    background: #000 !important;
 }
 
 .border-black {
     border: 1px solid black !important;
 }
 
-.bg-black {
-    background: #000 !important;
-}
+/* ...................................................... Footer*/
 
 .footer-heading {
     text-transform: uppercase;
@@ -185,6 +241,8 @@ color: white;
     flex: 1;
 }
 
+/* ...................................................... Icons*/
+
 .social-icons {
     padding-top: 20px;
 }
@@ -193,6 +251,8 @@ color: white;
     padding-left: 8px;
     font-size: 1.8rem;
 }
+
+/* ...................................................... Images*/
 
 .img-size {
     height: 300px;
@@ -203,29 +263,22 @@ color: white;
     width: 200px;
 }
 
-.push-down-content {
-    margin-top: 100px;
-    margin-bottom: 100px;
-}
+/* ...................................................... Page and Div Heights*/
+
 
 .homepage-text {
     margin-top: 250px;
 }
 
 .homepage-events-div {
-    height: 900px;
     margin-top: 80px;
-}
-
-.contact-us {
-    height: 900px;
 }
 
 .event-details-page {
     height: 1500px;
 }
 
-/*..................................Nav bar */
+/*...............................................Nav bar */
 
 #main-nav {
     background-color: #471d5c;
@@ -235,7 +288,7 @@ color: white;
     background-color: #471d5c;
 }
 
-/*..................................Comments */
+/*.......................................................Comments */
 
 .comments-container {
     max-height: 400px;
@@ -259,26 +312,6 @@ color: white;
     padding: 5px 10px;
     cursor: pointer;
     border-radius: 5px;
-}
-
-.skate-room-button {
-    background-color: #471d5c;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 5px;
-    text-decoration: none;
-}
-
-.skate-room-button:hover {
-    background-color: white;
-    color: #471d5c;
-    border: 1px solid #471d5c;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 5px;
-    text-decoration: none;
 }
 
 .delete-comment-button {
@@ -313,13 +346,7 @@ color: white;
     margin-top: 20px;
 }
 
-/*..................................All auth styles */
-
-.sign-out-template {
-    margin-bottom: 50px;
-}
-
-/*..................................Messages */
+/*.....................................................................Messages */
 
 .message-container {
     position: fixed;
@@ -347,7 +374,7 @@ color: white;
     right: 36px;
 }
 
-/* Convenience classes - colors copied from Bootstrap */
+/*.....................................................................Colours from bootsrap */
 .arrow-primary {
     border-bottom-color: #007bff !important;
 }
@@ -386,7 +413,7 @@ color: white;
     overflow-y: auto;
 }
 
-/*..................................Form Styles */
+/*................................................................Form Styles */
 
 .form-group {
     position: relative;
@@ -424,7 +451,7 @@ color: white;
     background-color: white;
 }
 
-/*..................................Allauth styles */
+/*.............................................................................Allauth styles */
 
 .allauth-form-inner-content p {
     margin-top: 1.5rem;
@@ -476,7 +503,7 @@ color: white;
     color: #17a2b8;
 }
 
-/*..................................Mailchimp form styles */
+/*..........................................................Mailchimp form styles */
 
 #mc_embed_signup {
     background: #222;
@@ -488,7 +515,7 @@ color: white;
 }
 
 
-/* -------------------------------- Media Queries */
+/* -------------------------..................................------- Media Queries */
 
 @media (min-width: 1200px) {
     .container {
