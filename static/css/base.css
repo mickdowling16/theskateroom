@@ -532,6 +532,10 @@ color: white;
     .container {
         max-width: 80%;
     }
+
+    .header-container {
+        padding-top: 164px;
+    }
 }
 
 /* fixed top navbar only on medium and up */
@@ -547,6 +551,10 @@ color: white;
     .homepage-text {
         margin-top: 100px;
     }
+
+    .header-container {
+        padding-top: 116px;
+    }
 }
 
 /* pad the top a bit when navbar is collapsed on mobile */
@@ -559,10 +567,18 @@ color: white;
     .homepage-text {
         margin-top: 100px;
     }
+
+    .header-container {
+        padding-top: 116px;
+    }
 }
 
 @media (min-width: 385px) {
     .homepage-text {
         margin-top: 160px;
+    }
+
+    .header-container {
+        padding-top: 116px;
     }
 }
