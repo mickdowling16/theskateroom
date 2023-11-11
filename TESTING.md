@@ -63,3 +63,4 @@ Went through each python file and fixed until no errors were reported in problem
 18. Contact form: Users can fill out contact form, form will be submitted and admin will get an email with form contents. PASSED
 ![Contact form submission email](documentation/testing/contact.PNG)
 19. Purchase product: Add products to shopping bag, proceed to checkout, enter details, checkout securely. PASSED
+![oder confirmation](documentation/testing/order-confirmation.PNG)
