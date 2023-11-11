@@ -478,3 +478,5 @@ During the building of my Django app I used a number of different resources to h
 - The [Django Documentation](https://docs.djangoproject.com/en/4.2/) helped guide me through issues with setting up my views and models in the early part of my project development.
 - The [Codemy.com](https://www.youtube.com/@Codemycom) Youtube channel was a great resource to help me understand adding a comments app for my events. I found his videos very informative and easy to follow.
 - The [Django Cheatsheet](https://cheatography.com/lewiseason/cheat-sheets/django-models/) helped me with the terminology for making my models
+- I found Dennis Ivy's YouTube Channel very good for walkthroughs and tutorials and to just understand Django more. His walkthrough series on eccomerce websites was helpful [Walkthrough](https://www.youtube.com/watch?v=_ELCMngbM0E&list=PL-51WBLyFTg0omnamUjL1TCVov7yDTRng)
+- I found this video very helpful when trying to figure out how to implement my local skateparks map [Leaflet tutorial](https://www.youtube.com/watch?v=E2bhoCOMlsA)
