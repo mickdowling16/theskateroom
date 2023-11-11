@@ -60,3 +60,6 @@ Went through each python file and fixed until no errors were reported in problem
 16. Delete Event: Superusers can permenently delete events. PASSED
 17. Register for event: Users can fill out registration form and submit details to admin. PASSED
 ![Register for event](documentation/testing/register.PNG)
+18. Contact form: Users can fill out contact form, form will be submitted and admin will get an email with form contents. PASSED
+![Contact form submission email](documentation/testing/contact.PNG)
+19. Purchase product: Add products to shopping bag, proceed to checkout, enter details, checkout securely. PASSED
