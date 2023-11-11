@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: 
+Sitemap: https://skate-room-fa0d77babcb9.herokuapp.com/sitemap.xml
