@@ -31,6 +31,12 @@ h1 {
     color: #555;
 }
 
+.thin-line-white {
+    border: 3px solid white;
+    border-radius: 3px;
+    color: white;
+}
+
 .homepage-btn {
     margin: 0 auto;
     text-align: center;
@@ -41,6 +47,15 @@ h1 {
 }
 
 /* from Bulma */
+.social-icon {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    height: 4rem;
+    width: 4rem;
+    font-size: 40px;
+}
+
 .icon {
     align-items: center;
     display: inline-flex;
@@ -135,6 +150,10 @@ color: white;
     color: #471d5c;
 }
 
+.bg-brand {
+    background-color: #222;
+}
+
 .border-black {
     border: 1px solid black !important;
 }
@@ -167,7 +186,6 @@ color: white;
 }
 
 .social-icons {
-    margin-left: 50px;
     padding-top: 20px;
 }
 
@@ -461,7 +479,7 @@ color: white;
 /*..................................Mailchimp form styles */
 
 #mc_embed_signup {
-    background: black;
+    background: #222;
     false;
     clear: left;
     font: 14px Helvetica, Arial, sans-serif;
