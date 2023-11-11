@@ -173,6 +173,29 @@ This allows logged in users to comment on events. Users can also like other user
   
 </details>
 
+### Shopping bag
+
+Users can add products to their shopping bag to purchase. The shopping bag will show quantity, size and price of item and calculate a grand total
+
+<details>
+  <summary>Shopping Bag</summary>
+
+  ![Comments](./documentation/comment.PNG)
+  
+</details>
+
+
+### Checkout Page
+
+Users can go to checkout with their bag items. A checkout form asking users for their delivery details and card details will show alongside an order summary.
+
+<details>
+  <summary>Comments Section</summary>
+
+  ![Checkout](./documentation/checkout-form.PNG)
+  
+</details>
+
 ## CRUD Functionality
 
 I have implemented CRUD functionality into this project by allowing an admin the ability to fully manage products and events on this website. Admins can add, edit or delete products and events from the admin panel. This allows full control over all content on the website.

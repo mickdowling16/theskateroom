@@ -7,55 +7,52 @@
 
 {% block content %}
 <div class="hero-image">
-    <div class="hero-section container">
+<div class="hero-section container">
+    <div class="row">
+        <div class="col-12 homepage-text">
+            <h1 class="display-4 text-white text-center">
+                Welcome to The Skate Room.
+            </h1>
+            <hr class="thick-line">
+            <div class="text-center my-5">
         <div class="row">
-            <div class="col-12 homepage-text">
-                <h1 class="display-4 text-white text-center">
-                    Welcome to The Skate Room.
-                </h1>
-                <hr class="thick-line">
-                <div class="text-center my-5">
-                    <div class="row">
-                        <div class="col-lg-6 mb-4 mb-lg-0">
-                            <h4>
-                                <a href="{% url 'products' %}"
-                                    class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3">Shop Now</a>
-                            </h4>
-                        </div>
-                        <div class="col-lg-6">
-                            <h4>
-                                <a href="{% url 'events:event_list' %}"
-                                    class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3">Upcoming Events</a>
-                            </h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="col-lg-6 mb-4 mb-lg-0">
+            <h4>
+                <a href="{% url 'products' %}" class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3">Shop Now</a>
+            </h4>
+        </div>
+        <div class="col-lg-6">
+            <h4>
+                <a href="{% url 'events:event_list' %}" class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3">Upcoming Events</a>
+            </h4>
         </div>
     </div>
+</div>
+        </div>
+    </div>
+</div>
 </div>
 <div class="container homepage-events-div bottom-margins">
     <div class="row">
         <div class="col-12">
             <h1>
-                <a href="{% url 'events:event_list' %}" class="h1-link">Upcoming Skate Events <i
-                        class="h1-link fa-solid fa-circle-arrow-right" style="color: #555555;"></i></a>
+                <a href="{% url 'events:event_list' %}" class="h1-link">Upcoming Skate Events <i class="h1-link fa-solid fa-circle-arrow-right" style="color: #555555;"></i></a>
             </h1>
             <hr class="thin-line">
         </div>
     </div>
     <div class="row">
         {% for event in upcoming_events %}
-        <div class="col-md-4">
-            <div class="card mb-4">
-                <img src="{{ event.image.url }}" alt="{{ event.title }}" class="card-img-top img-thumbnail">
-                <div class="card-body">
-                    <h5 class="card-title">{{ event.title }}</h5>
-                    <p class="card-text">Date: {{ event.date }}</p>
-                    <a href="{% url 'events:event_detail' event.id %}" class="skate-room-button">Details</a>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img src="{{ event.image.url }}" alt="{{ event.title }}" class="card-img-top img-thumbnail">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ event.title }}</h5>
+                        <p class="card-text">Date: {{ event.date }}</p>
+                        <a href="{% url 'events:event_detail' event.id %}" class="skate-room-button">Details</a>
+                    </div>
                 </div>
             </div>
-        </div>
         {% endfor %}
     </div>
 </div>

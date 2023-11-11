@@ -521,6 +521,10 @@ color: white;
     font-size: small;
 }
 
+.header-container {
+    margin-top: 160px;
+}
+
 
 /* -------------------------..................................------- Media Queries */
 
