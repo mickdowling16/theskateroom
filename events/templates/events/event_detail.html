@@ -58,9 +58,9 @@
             <div class="comments-container" id="comments">
                 {% for comment in event.comments.all reversed %}
                 <div class="comment" id="comment-{{ comment.id }}">
-                    <strong>
-                        <p>{{ comment.user.user.username }}
-                    </strong> <span class="date-of-comment">({{ comment.created_at }}):</span></p>
+                    
+                        <p><strong>{{ comment.user.user.username }}
+                    </strong><span class="date-of-comment">({{ comment.created_at }}):</span></p>
                     <p>{{ comment.text }}</p>
                     <button class="like-comment-button" data-comment-id="{{ comment.id }}">
                         <i class="fa-regular fa-heart" style="color: #ff0000;"></i> Like
@@ -106,7 +106,7 @@ function submitComment(text, event_id) {
 
                 var commentHtml = `
                     <div class="comment" id="comment-${data.id}">
-                        <strong><p>${data.user}</strong> (${commentDate}):</p>
+                        <p><strong>${data.user}</strong>(${commentDate}):</p>
                         <p>${data.text}</p>
                         <button class="like-comment-button" data-comment-id="${data.id}">
                             <i class="fa-regular fa-heart" style="color: #ff0000;"></i> Like

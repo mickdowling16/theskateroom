@@ -1,5 +1,16 @@
 # HTML Testing
 
+I tested all my HTML code using [The W3C Markup Validation Service](https://validator.w3.org/). Below are my results
+
+### Homepage
+
+![homepage html](documentation/testing/html-home.PNG)
+
+### Products
+
+![products html](documentation/testing/html-home.PNG)
+
+
 # CSS Testing
 
 To test my CSS file I used [CSS Jigsaw Validator](https://jigsaw.w3.org/css-validator/validator). I copy and pasted my base CSS file into the validator and it returned a couple of errors.
