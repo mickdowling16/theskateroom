@@ -722,3 +722,9 @@ During the building of my Django app I used a number of different resources to h
 - The [Django Cheatsheet](https://cheatography.com/lewiseason/cheat-sheets/django-models/) helped me with the terminology for making my models
 - I found Dennis Ivy's YouTube Channel very good for walkthroughs and tutorials and to just understand Django more. His walkthrough series on eccomerce websites was helpful [Walkthrough](https://www.youtube.com/watch?v=_ELCMngbM0E&list=PL-51WBLyFTg0omnamUjL1TCVov7yDTRng)
 - I found this video very helpful when trying to figure out how to implement my local skateparks map [Leaflet tutorial](https://www.youtube.com/watch?v=E2bhoCOMlsA)
+
+## Media Credits
+
+- The images for my project came from Google images. The event images were from searches for skateboarding art and copied form Google images. These are not my images and I dont take ownership for them.
+- My product images were taken from ecommerce sites such as [asos](https://www.asos.com/), [vans](https://www.vans.ie/), [converse](https://www.converse.com/ie) and [levi](https://www.levi.com/IE/en_IE/).
+- My skateboard images were also taken from Google images and skateboarding websites and toy stores like [Smyths](https://www.smythstoys.com/ie/en-ie), [Decathlon](https://www.decathlon.ie/)

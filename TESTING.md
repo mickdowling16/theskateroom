@@ -10,9 +10,21 @@ I tested all my HTML code using [The W3C Markup Validation Service](https://vali
 
 ![products html](documentation/testing/html-products.PNG)
 
+### Product detail
+
+![product detail html](documentation/testing/html-product-detail.PNG)
+
 ### Events
 
 ![events html](documentation/testing/html-events.PNG)
+
+### Event detail
+
+![event detail html](documentation/testing/html-event-details.PNG)
+
+### Event Add
+
+![event add html](documentation/testing/html-event-add.PNG)
 
 ### Contact
 
@@ -21,6 +33,14 @@ I tested all my HTML code using [The W3C Markup Validation Service](https://vali
 ### Skateparks
 
 ![skateparks html](documentation/testing/html-skate.PNG)
+
+### Checkout
+
+![checkout html](documentation/testing/html-checkout.PNG)
+
+The only error that showed in my html code is the below for a trailing slash. I couldn't identify where in my code this was, it seems to be an issue with the country selector on the profile page. It is the only html error in my code
+
+![html error](documentation/testing/html-error.PNG)
 
 # CSS Testing
 
