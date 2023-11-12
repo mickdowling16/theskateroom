@@ -159,6 +159,10 @@ On the second test these were my results. My accessibility score increased as I 
 
 ![Lighthouse test 2](documentation/testing/lighthouse-test-2.PNG)
 
+When I fixed some of my errors in the html validator my lighthosue score increased further
+
+![Lighthouse test 3](documentation/testing/lighthouse-test-3.PNG)
+
 
 ## Bugs
 

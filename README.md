@@ -235,7 +235,7 @@ I used MoSCow prioritization to prioritze my user stories and make sure to imple
 
 ## User Stories
 
-My user stories are split into epics, displayed below and also mapped out using agile methodology HERE
+My user stories are split into epics, displayed below and also mapped out using agile methodology [here](https://github.com/mickdowling16/theskateroom/issues)
 
 ### Epic 1 - Core Functionality
 
@@ -286,7 +286,7 @@ My user stories are split into epics, displayed below and also mapped out using 
 
 ## Models Used
 
-I used a variety of models in my project. Both custom models and models from the Boutique Ado walkthrough project. Below are all my models represented in a table
+I used a variety of models in my project. Both custom models and models from the Boutique Ado walkthrough project. Below are all my models represented in a table. My custom models are the events model, the comments model and the edit version of the products model to add stock control.
 
 ### Product Model
 
@@ -631,6 +631,10 @@ This app is deployed to [Heroku](https://heroku.com). After account set up follo
 | EMAIL_HOST_PASS | This is the password for the email address to allow django to send emails |
 | STRIPE_PUBLIC_KEY | This is the public key neccessary for stripe payments |
 | STRIPE_SECRET_KEY | This is the secret key neccessary for stripe payments. (important to keep secret) |
+| AWS_SECRET_ACCESS_KEY | This is the secret key for Amazon Static file storage |
+| AWS_ACCESS_KEY_ID | This is access key for Amazon static file storage |
+| STRIPE_WH_SECRET | For stripe webhooks |
+| USE_AWS | This is set to True |
 
 Heroku also needs two additional files in order to deploy properly.
 > requirements.txt
