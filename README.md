@@ -391,6 +391,9 @@ I used a variety of models in my project. Both custom models and models from the
 | default_postcode       | CharField(20)       | Default postcode for delivery information          |
 | default_country        | CountryField        | Default country for delivery information (optional) |
 
+## Business Model
+
+The business model for The Skate Room would be a B2C (Business to Customer) model as the business would be selling products directly to the consumer. My business is more than an online store and the goal is to become a main stay in the skating community in Ireland by hosting events, being active in the online social media skating community and creating a skate room community in which people interact with each other through meet ups, competitons and events. The Skate Room want to become a main skating sponsor of all skating events in Ireland and be able to take the business global.
 
 ## SEO & Marketing
 
