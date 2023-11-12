@@ -123,6 +123,9 @@ Went through each python file and fixed until no errors were reported in problem
 ![Comment submitted](documentation/testing/comment-2.PNG)
 28. Like comment: As a logged in user, like comment in event details page. like number increase by 1. PASSED
 ![Comment liked](documentation/testing/comment-like.PNG)
+29. Register your interest: Click register your interest from event details page. fill out form with details, click submit. PASSED
+![Registrations admin panel](documentation/testing/registration-1.PNG)
+![Registration email](documentation/testing/registration-2.PNG)
 
 
 ## Browser Compatibility
