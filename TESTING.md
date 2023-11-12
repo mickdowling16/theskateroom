@@ -76,6 +76,11 @@ Went through each python file and fixed until no errors were reported in problem
 24. Update profile: Fill out form on profile page to update profile information. PASSED
 25. Local Skateparks: Click locations to bring user to that point on the map: PASSED
 26. Privacy policy: Click privacy policy link in footer to bring me to privacy policy page. PASSED
+27. Comments: Go to event details page when logged in, write a comment in the comment box and press submit. PASSED
+![Comment](documentation/testing/comment-1.PNG)
+![Comment submitted](documentation/testing/comment-2.PNG)
+28. Like comment: As a logged in user, like comment in event details page. like number increase by 1. PASSED
+![Comment liked](documentation/testing/comment-like.PNG)
 
 
 ## Browser Compatibility
@@ -107,3 +112,20 @@ When testing responsiveness I used my laptop, phone and tablet along with Google
 When I ran my first lighthouse test these were the results below. 
 
 ![Lighthouse test 1](documentation/testing/lighthouse-test-1.PNG)
+
+On the second test these were my results. My accessibility score increased as I added aria labels to my social media links and my search button, but my performance score decreased for an unknown reason as nothing else was changed
+
+![Lighthouse test 2](documentation/testing/lighthouse-test-2.PNG)
+
+
+## Bugs
+
+### Unsloved bugs
+
+- On my skateparks locator page, the coordinates aren't 100% accurate. I'm not sure why this has happened. I got the correct coordinates from Google maps and plotted them on the map. When doing some research it could be a issue with the map supplier I used, Leaflet. I decided to leave this bug as for the purpose of this project it does the job as intended but for a real life website I would have to make sure this information is accurate. I would probably use Google maps as my supplier for this, but Leaflet was easy to set up and fit the purpose of the project.
+
+- Another unsolved bug on my site is that of the stock control. I implemented stock control for my products and for the inventory to automaticallty update if a product is added to the bag. An issue I had was trying to implement different stock values for each size of clothing. I tried to do this but when I changed my products model and views I kept running into errors with the way the template was rending the out of stock message. This problem took up a considerable amount of time and unfortunately I had to leave it and move onto something else in order to complete the project in time. I reverted back to the old code I had, so stock will update and each otem has a stock value, but unfortunetly I couldn't allocate a stock value for each different size as I couldn't solve the bug
+
+### Solved bugs
+
+- One solved bug that I had was when implementing by comments section on my events page. The comments would submit but not appear in the comments section. I solved this by using javascript to reload the page and clear the comment box when the submit button is clicked, the javascript also handles comment likes. My comment section now works as intended.
