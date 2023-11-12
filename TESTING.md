@@ -76,3 +76,12 @@ Went through each python file and fixed until no errors were reported in problem
 24. Update profile: Fill out form on profile page to update profile information. PASSED
 25. Local Skateparks: Click locations to bring user to that point on the map: PASSED
 26. Privacy policy: Click privacy policy link in footer to bring me to privacy policy page. PASSED
+
+
+## Browser Compatibility
+
+I tested my site on Chrome, Firefox and Microsoft Edge. All browsers worked as expected with no errors and no differences
+
+## Responsiveness
+
+When testing responsiveness I used my laptop, phone and tablet along with Google developer tools to test the app on different screen sizes. I styles my app with bootstrap to account for smaller screen sizes and for it to be responsive on mobile and tablet. It works as expected on these different screen sizes.
