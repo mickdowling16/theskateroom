@@ -103,3 +103,7 @@ When testing responsiveness I used my laptop, phone and tablet along with Google
 ![Tablet Products](documentation/testing/tablet-products.PNG)
 
 ## Lighthouse Testing
+
+When I ran my first lighthouse test these were the results below. 
+
+![Lighthouse test 1](documentation/testing/lighthouse-test-1.PNG)
