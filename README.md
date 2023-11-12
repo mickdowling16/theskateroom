@@ -429,7 +429,7 @@ I also added a newsletter signup form in the footer of my website. This form is 
 
 ## Testing
 
-My testing can be found in [testing.md](https://skate-room-fa0d77babcb9.herokuapp.com/)
+My testing can be found in [TESTING.md](/TESTING.md)
 
 ## Deployment
 
@@ -451,12 +451,165 @@ To obtain your own Postgres Database, sign-up with your GitHub account, then fol
 
 I used Amazon web services for static files storage. 
 
-- Create a free AWS account.
-- Add S3 and IAM services to your account
-- In S3 create a new bucket with name of project
-- In IAM create new User Group.
-- Create a policy
-- Attach the policy
+#### S3
+
+1. First you will need to sign up to AWS which you can do [here](https://aws.amazon.com/free/?trk=d5254134-67ca-4a35-91cc-77868c97eedd&sc_channel=ps&ef_id=CjwKCAiA6byqBhAWEiwAnGCA4HEwXLC9xbrKoIPEWGDrk-cZwRWk3xksWmiahM-bu7P-2XEBIPoDKBoC2kwQAvD_BwE:G:s&s_kwcid=AL!4422!3!433803620858!e!!g!!aws!1680401428!67152600164)
+2. Once you have created an account and logged in, under the All Services > Storage menu, click the link that says S3.
+3. In S3 you will need to create a new bucket. To do this click the Create Bucket button.
+4. Name the bucket and select the closest region to you.
+5. Under 'Object Ownership' select 'ACLs enabled' and leave the Object Ownership as Bucket owner preferred.
+6. Uncheck the 'Block all public access' checkbox and check the warning box to acknowledge that the bucket will be made public, then click create bucket.
+7. Once created, click the bucket's name and navigate to the properties tab. Scroll to the bottom and under 'Static website hosting' click 'edit' and change the Static website hosting option to 'enabled'. Copy the default values for the index and error documents and click 'save changes'.
+8. Now navigate to the permissions tab, scroll down to the Cross-origin resource sharing (CORS) section, click edit and paste in the following code:
+
+```
+[
+    {
+        "AllowedHeaders": [
+        "Authorization"
+        ],
+        "AllowedMethods": [
+        "GET"
+        ],
+        "AllowedOrigins": [
+        "*"
+        ],
+        "ExposeHeaders": []
+    }
+]
+```
+
+9. Then scroll back up to the 'Bucket Policy' section. Click 'edit' and then 'Policy generator'. This should open the AWS policy generator page.
+10. From here under the 'select type of policy' dropdown menu, select 'S3 Bucket Policy'. Then inside 'Principle' allow all principals by typing a *.
+11. From the 'Actions dropdown menu select 'Get object'. Then head back to the previous tab and locate the Bucket ARN number. Copy that, return to the policy generator and paste it in the field labelled Amazon Resource Name (ARN).
+12. Once that's completed click 'Add statement', then 'Generate Policy'. Copy the policy that's been generated and paste it into the bucket policy editor.
+13. Before you click save, add a '/*' at the end of your resource key. This is to allow access to all resources in this bucket.
+14. Once those changes are saved, scroll down to the Access control list (ACL) section and click 'edit'.
+15. Next to 'Everyone (public access)', check the 'list' checkbox. This will pop up a warning box that you will also have to check. Once that's done click 'save'.
+
+#### IAM
+
+1. Now that your bucket is ready we need to create a user to access it. In the search bar at the top of the window, search for IAM and select it.
+2. Once on the IAM page, click 'User Groups' from the side bar, then click 'Create group'.
+3. Name the group 'manage-your-project-name' and click 'Create group' at the bottom of the page.
+4. Then from the sidebar click 'Policies', then 'Create policy'.
+5. Go to the JSON tab and click 'import managed policy'. Search for 'S3' and select 'AmazonS3FullAccess' and click import.
+6. Once this is imported you will need to edit it slightly. Go back to your bucket and copy your ARN number. Head back to this policy and update the Resource key to include your ARN, and another line with your ARN followed by a /*. It should end up looking something like this:
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:*",
+                "s3-object-lambda:*"
+            ],
+            "Resource": [
+                "YOUR-ARN-NO-HERE",
+                "YOUR-ARN-NO-HERE/*"
+            ]
+        }
+    ]
+}
+```
+
+7. Click 'Next: Tags', 'Next: Review', and on this page give the policy a name. This could be something as simple as the project name followed by the word policy, and then a short description eg: Access to S3 bucket for 'YOUR PROJECT' static files. Then click 'Create policy'.
+8. This will take you back to the policy page where you should be able to see your newly created policy. Now we need to attach it to the group we created.
+9. Click 'User groups', and click the group you created earlier. Go to the permissions tab and click 'Add permission' and from the dropdown click 'Attach policies'.
+10. Find the policy you just created, select it and click 'Add permissions'.
+11. Finally you need to create a user to put in the group. Select users from the sidebar and click 'Add user'.
+12. Give your user a user name, check 'Programmatic Access', then click 'Next: Permissions'.
+13. Select your group that has the policy attached and click 'Next: Tags', 'Next: Review', then 'Create user'.
+14. On the next page, download the CSV file. This contains the user's access key and secret access key which you will need later.
+
+#### Connecting AWS to django
+
+Now that you have created a S3 bucket with its user group attached, we need to connect it to django.
+
+1. First you will need to install two packages. Boto3 and Django storages. Do this by running these commands:
+
+```
+pip3 install boto3
+pip3 install django-storages
+```
+
+And remember to freeze the requirements.
+
+2. You will then need to add 'storages' to your installed apps section inside your settings.py file. Do that now.
+3. Next, we will need to add some additional settings to the same file to let django know what bucket it's communicating with.
+4. Somewhere near the bottom of the file you should write an if statement to check if there is an environment variable called USE_AWS. This variable does not exist yet but we will add it later. Inside the if statement, write the following settings so it looks like this:
+
+```
+if 'USE_AWS' in os.environ:
+    AWS_STORAGE_BUCKET_NAME = 'insert-your-bucket-name-here'
+    AWS_S3_REGION_NAME = 'insert-your-region-here'
+    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+```
+
+5. Next, hop back to heroku and in the settings tab, under config vars, you will need to add some keys with values that were downloaded earlier in the CSV file.
+6. Add the key, AWS_ACCESS_KEY_ID with the value that was generated in the CSV file earlier. Then add the key AWS_SECRET_ACCESS_KEY, and again add the value that was generated in the CSV file. Once they have both been added, add the key USE_AWS, and set the value to True.
+7. You can now also remove the DISABLE_COLLECTSTAIC variable, since django should now collect static files automatically and upload them to S3.
+8. Now head back to the settings.py file in your django project and head back to the if statement we wrote earlier and inside the statement add this line setting:
+
+```
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+```
+
+This is to tell django where our static files will be coming from in production.
+9. Next we need to create a file to tell django that we want to use S3 to store our static files whenever someone runs collectstatic and also that we want any uploaded product images to go there also.
+10. In the root directory of your project create a file called 'custom_storages.py'. Inside this file you will need to import your settings as well as the s3boto3 storage class. So at the top of the file insert the code:
+
+```
+from django.conf import settings
+from storages.backends.s3boto3 import S3Boto3Storage
+```
+
+11. Then underneath the imports insert these two classes:
+
+```
+class StaticStorage(S3Boto3Storage):
+    location = settings.STATICFILES_LOCATION
+```
+
+```
+class MediaStorage(S3Boto3Storage):
+    location = settings.MEDIAFILES_LOCATION
+```
+
+The STATICFILES_LOCATION and MEDIAFILES_LOCATION have yet to be defined, so lets do that now.
+
+12. Back in the settings.py file, underneath the bucket config settings but still inside the if statement, add these lines:
+
+```
+STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+STATICFILES_LOCATION = 'static'
+DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+MEDIAFILES_LOCATION = 'media'
+```
+
+13. Next, you will also need to override and explicitly set the URLs for static and media files using your custom domain and new locations. To do this add these two lines inside the same if statement:
+
+```
+STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
+MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
+```
+
+14. If you now save, add, commit and push your changes, you should see that your S3 bucket now has a static folder with all your static files inside. Next, we need to handle the Media files but first, inside the if statement add the following code. This helps to speed things up by letting the browser know that its ok to cache static files for a long time:
+
+```
+AWS_S3_OBJECT_PARAMETERS = {
+    'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+    'CacheControl': 'max-age=94608000',
+}
+```
+
+15. Back in S3, go to your bucket and click 'Create folder'. Name the folder 'media' and click 'Save'.
+16. Inside the new media folder you just created, click 'Upload', 'Add files', and then select all the images that you are using on your site.
+17. Then under 'Permissions' select the option 'Grant public-read access' and click upload. You may need to also check an acknowledgment warning checkbox too.
+18. Once that is finished you're all set. All your static files and media files should be automatically linked from django to your S3 bucket.
 
 ### Heroku Deployment
 
