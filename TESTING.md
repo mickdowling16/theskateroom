@@ -8,8 +8,19 @@ I tested all my HTML code using [The W3C Markup Validation Service](https://vali
 
 ### Products
 
-![products html](documentation/testing/html-home.PNG)
+![products html](documentation/testing/html-products.PNG)
 
+### Events
+
+![events html](documentation/testing/html-events.PNG)
+
+### Contact
+
+![contact html](documentation/testing/html-contact.PNG)
+
+### Skateparks
+
+![skateparks html](documentation/testing/html-skate.PNG)
 
 # CSS Testing
 
