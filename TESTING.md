@@ -85,3 +85,21 @@ I tested my site on Chrome, Firefox and Microsoft Edge. All browsers worked as e
 ## Responsiveness
 
 When testing responsiveness I used my laptop, phone and tablet along with Google developer tools to test the app on different screen sizes. I styles my app with bootstrap to account for smaller screen sizes and for it to be responsive on mobile and tablet. It works as expected on these different screen sizes.
+
+### Mobile
+
+![Mobile Home](documentation/testing/mobile-home.PNG)
+![Mobile Events](documentation/testing/mobile-events.PNG)
+![Mobile Profile](documentation/testing/mobile-profile.PNG)
+![Mobile Shopping](documentation/testing/mobile-shopping.PNG)
+![Mobile Products](documentation/testing/mobile-products.PNG)
+
+### Tablet
+
+![Tablet Home](documentation/testing/tablet-home.PNG)
+![Tablet Events](documentation/testing/tablet-events.PNG)
+![Tablet Profile](documentation/testing/tablet-profile.PNG)
+![Tablet Shopping](documentation/testing/tablet-shopping.PNG)
+![Tablet Products](documentation/testing/tablet-products.PNG)
+
+## Lighthouse Testing
