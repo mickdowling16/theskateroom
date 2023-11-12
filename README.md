@@ -150,6 +150,18 @@ The events page allows users to see all upcoming events displayed on bootstrap c
   
 </details>
 
+### Events registration
+
+Users can register their interest for events by clicking through to the register form from the event detail page, here a user can register their interest for an event. When the form is submitted the Skate Room will get an email to inform them there is new interest and the users details will be recorded in the database. This will give The Skate Room better visability on the number of interested users for each event, giving them more control.
+
+<details>
+  <summary>Events registration form</summary>
+
+  ![Events page 1 ](./documentation/register-form.PNG)
+
+  
+</details>
+
 
 ### Event Management
 
@@ -262,12 +274,15 @@ My user stories are split into epics, displayed below and also mapped out using 
 
 - As a user I want to provide my email address to be kept up to date with the latest skating events happening
 - As a user I want to be able to easily find upcoming events on the website that I can go to
-- As an admin I want to be able to add event information to the website to keep the community up to date with upcoming events.
+- As a user I want to register my interest for an event to confirm I'll be going
+
 
 ### Epic 5 - Admin Functionality
 
 - As an admin I want to be able to see the product management page so I can make changes to front end
 - As an admin I want to add, remove or edit products on page to accurately represent the items being sold
+- As an admin I want to be able to add event information to the website to keep the community up to date with upcoming events.
+- As an admin I want to be able to record all interet in events to better manage number of people attending.
 
 ### Epic 6 - User Accounts
 
@@ -286,7 +301,7 @@ My user stories are split into epics, displayed below and also mapped out using 
 
 ## Models Used
 
-I used a variety of models in my project. Both custom models and models from the Boutique Ado walkthrough project. Below are all my models represented in a table. My custom models are the events model, the comments model and the edit version of the products model to add stock control.
+I used a variety of models in my project. Both custom models and models from the Boutique Ado walkthrough project. Below are all my models represented in a table. My custom models are the events model, the comments model and the event registration model to record registrations in the database.
 
 ### Product Model
 
@@ -317,6 +332,19 @@ I used a variety of models in my project. Both custom models and models from the
 | date         | DateField           | Date of the event                                |
 | time         | TimeField           | Time of the event (nullable, default=None)      |
 | image        | ImageField          | Image associated with the event (upload to 'event_images/') |
+
+
+### Event Registration
+
+| Field Name  | Field Type          | Description                                        |
+|-------------|---------------------|----------------------------------------------------|
+| id          | AutoField           | Primary key                                        |
+| name        | CharField(100)       | Name of the registrant                             |
+| email       | EmailField          | Email of the registrant                            |
+| phone       | CharField(15)        | Phone number of the registrant                     |
+| event       | ForeignKey(Event)   | Reference to the associated event                  |
+| message     | TextField           | Additional message or comments from the registrant |
+| created_at  | DateTimeField       | Timestamp indicating when the registration was created |
 
 
 
