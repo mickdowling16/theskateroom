@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, reverse, HttpResponse, get_object_or_404
 from django.contrib import messages
-from .models import Event
+from .models import Event, Registration
 from .forms import RegistrationForm, EventForm
 from comments.models import Comment
 from comments.forms import CommentForm
@@ -30,6 +30,15 @@ def register(request):
             phone = form.cleaned_data['phone']
             event = form.cleaned_data['event']
             message = form.cleaned_data['message']
+
+            registration = Registration(
+                name=name,
+                email=email,
+                phone=phone,
+                event=event,
+                message=message
+            )
+            registration.save()
 
             # Send email with form details
             subject = f'New Registration for {event}'
