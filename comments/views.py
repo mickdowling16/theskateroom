@@ -8,6 +8,7 @@ from profiles.models import UserProfile
 from django.contrib.auth.decorators import login_required
 
 
+# View to add comment to event page
 @login_required
 def add_comment(request, event_id):
     event = get_object_or_404(Event, pk=event_id)
@@ -36,6 +37,7 @@ def add_comment(request, event_id):
     return JsonResponse({'success': False, 'error': 'Invalid request method'})
 
 
+# View to like a comment on event page when logged in
 @login_required
 def like_comment(request, comment_id):
     comment = get_object_or_404(Comment, pk=comment_id)
@@ -51,6 +53,7 @@ def like_comment(request, comment_id):
     return JsonResponse({'liked': liked, 'like_count': like_count})
 
 
+# View to delete comment on event page when logged in
 @login_required
 def delete_comment(request, comment_id):
     try:

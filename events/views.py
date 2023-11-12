@@ -10,11 +10,13 @@ from django.conf import settings
 
 
 def event_list(request):
+    """ list of all events on website """
     events = Event.objects.all().order_by('date')
     return render(request, 'events/event_list.html', {'events': events})
 
 
 def event_detail(request, event_id):
+    """ More detail on each event """
     event = Event.objects.get(pk=event_id)
     comments = Comment.objects.filter(event=event).order_by('-created_at')
     comment_form = CommentForm()
@@ -22,6 +24,7 @@ def event_detail(request, event_id):
 
 
 def register(request):
+    """ Register interest in event from Registration Form """
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():

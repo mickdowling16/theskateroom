@@ -4,6 +4,7 @@ from datetime import datetime
 
 
 def index(request):
+    """ homepage view """
     current_date = datetime.now()
     upcoming_events = Event.objects.filter(
         date__gte=current_date).order_by('date')[:3]
