@@ -551,6 +551,10 @@ color: white;
     .header-container {
         padding-top: 170px;
     }
+
+    #mobile-home-button {
+        display: none;
+    }
 }
 
 /* pad the top a bit when navbar is collapsed on mobile */

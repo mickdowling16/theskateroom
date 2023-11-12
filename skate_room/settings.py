@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', '')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['skate-room-fa0d77babcb9.herokuapp.com', '8000-mickdowling-theskateroo-3q138vatimo.ws-eu106.gitpod.io']
 
