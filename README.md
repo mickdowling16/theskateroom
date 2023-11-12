@@ -180,7 +180,7 @@ Users can add products to their shopping bag to purchase. The shopping bag will 
 <details>
   <summary>Shopping Bag</summary>
 
-  ![Comments](./documentation/comment.PNG)
+  ![Comments](./documentation/shopping-bag.PNG)
   
 </details>
 
@@ -201,7 +201,7 @@ Allows users to update their profile information and view their recent order his
 Users can go to checkout with their bag items. A checkout form asking users for their delivery details and card details will show alongside an order summary.
 
 <details>
-  <summary>Comments Section</summary>
+  <summary>Checkout</summary>
 
   ![Checkout](./documentation/checkout-form.PNG)
   
@@ -290,70 +290,107 @@ I used a variety of models in my project. Both custom models and models from the
 
 ### Product Model
 
-| Field Name   | Field Type          | Description                                        |
-|--------------|---------------------|----------------------------------------------------|
-| category     | ForeignKey(Category)| ForeignKey to 'Category', null=True, blank=True, on_delete=models.SET_NULL |
-| sku          | CharField           | Max length 254, null=True, blank=True              |
-| name         | CharField           | Max length 254                                    |
-| description  | TextField           |                                                  |
-| has_sizes    | BooleanField        | Default: False                                    |
-| size         | CharField           | Max length 10, Default: 'Medium'                  |
-| stock        | IntegerField        | Default: 0                                        |
-| price        | DecimalField        | Max digits 6, Decimal places 2                    |
-| rating       | DecimalField        | Max digits 6, Decimal places 2, null=True, blank=True |
-| image_url    | URLField            | Max length 1024, null=True, blank=True             |
-| image        | ImageField          | null=True, blank=True                              |
+| Field Name   | Field Type           | Description                                          |
+|--------------|----------------------|------------------------------------------------------|
+| id           | AutoField            | Primary key                                          |
+| category     | ForeignKey(Category) | Reference to the Category model (nullable)           |
+| sku          | CharField(254)       | Stock Keeping Unit, a unique identifier (nullable)   |
+| name         | CharField(254)       | Name of the product                                  |
+| description  | TextField            | Description of the product                           |
+| has_sizes    | BooleanField         | Indicates whether the product has different sizes    |
+| size         | CharField(10)        | Size of the product (default: 'Medium')              |
+| stock        | IntegerField         | Available stock quantity                             |
+| price        | DecimalField         | Price of the product                                 |
+| rating       | DecimalField         | Rating of the product (nullable)                     |
+| image_url    | URLField             | URL for the product image (nullable)                 |
+| image        | ImageField           | Image file for the product (nullable)                |
+
+
 
 ### Event Model
 
-| Field Name   | Field Type         | Description                                        |
-|--------------|--------------------|----------------------------------------------------|
-| title        | CharField          | Max length 200                                    |
-| description  | TextField          |                                                  |
-| date         | DateTimeField      |                                                  |
-| image        | ImageField         | upload_to='event_images/', blank=True, null=True   |
+| Field Name   | Field Type          | Description                                      |
+|--------------|---------------------|--------------------------------------------------|
+| id           | AutoField           | Primary key                                      |
+| title        | CharField(200)      | Title of the event                               |
+| description  | TextField           | Description of the event                         |
+| date         | DateField           | Date of the event                                |
+| time         | TimeField           | Time of the event (nullable, default=None)      |
+| image        | ImageField          | Image associated with the event (upload to 'event_images/') |
+
+
 
 ### Order Model
 
-| Field Name      | Field Type              | Description                                             |
-|-----------------|-------------------------|---------------------------------------------------------|
-| order_number    | CharField               | Max length 32, not editable                              |
-| user_profile    | ForeignKey(UserProfile) | on_delete=models.SET_NULL, null=True, blank=True, related_name='orders' |
-| full_name       | CharField               | Max length 50, not null, not blank                       |
-| email           | EmailField              | Max length 254, not null, not blank                       |
-| phone_number    | CharField               | Max length 20, not null, not blank                       |
-| country         | CountryField            | blank_label='Country *', not null, not blank             |
-| postcode        | CharField               | Max length 20, null and blank                             |
-| town_or_city    | CharField               | Max length 40, not null, not blank                       |
-| street_address1 | CharField               | Max length 80, not null, not blank                       |
-| street_address2 | CharField               | Max length 80, null and blank                             |
-| county          | CharField               | Max length 80, null and blank                             |
-| date            | DateTimeField           | auto_now_add=True                                       |
-| delivery_cost   | DecimalField            | max_digits=6, decimal_places=2, not null, default=0     |
-| order_total     | DecimalField            | max_digits=10, decimal_places=2, not null, default=0   |
-| grand_total     | DecimalField            | max_digits=10, decimal_places=2, not null, default=0   |
-| original_bag    | TextField               | not null, not blank, default=''                          |
-| stripe_pid      | CharField               | Max length 254, not null, not blank, default=''         |
+| Field Name        | Field Type                 | Description                                        |
+|-------------------|----------------------------|----------------------------------------------------|
+| id                | AutoField                  | Primary key                                        |
+| order_number      | CharField(32)              | Unique order identifier (not editable)             |
+| user_profile      | ForeignKey(UserProfile)    | Reference to the UserProfile model (nullable)     |
+| full_name         | CharField(50)              | Full name of the customer                         |
+| email             | EmailField(254)            | Email address of the customer                      |
+| phone_number      | CharField(20)              | Phone number of the customer                       |
+| country           | CountryField               | Country of the customer                           |
+| postcode          | CharField(20)              | Postal code of the customer (nullable)             |
+| town_or_city      | CharField(40)              | Town or city of the customer                       |
+| street_address1   | CharField(80)              | First line of street address                       |
+| street_address2   | CharField(80) (nullable)   | Second line of street address (nullable)           |
+| county            | CharField(80) (nullable)   | County of the customer (nullable)                  |
+| date              | DateTimeField(auto_now_add)| Date and time of order creation (auto-generated)   |
+| delivery_cost     | DecimalField(6, 2)         | Cost of delivery                                   |
+| order_total       | DecimalField(10, 2)        | Total cost of the order                            |
+| grand_total       | DecimalField(10, 2)        | Grand total cost including delivery                |
+| original_bag      | TextField                  | Serialized data of the original bag contents       |
+| stripe_pid        | CharField(254)             | Payment intent identifier from Stripe              |
+
+
 
 ### Order line item model
 
-| Field Name     | Field Type              | Description                                             |
-|-----------------|-------------------------|---------------------------------------------------------|
-| order           | ForeignKey(Order)       | not null, not blank, on_delete=models.CASCADE, related_name='lineitems' |
-| product         | ForeignKey(Product)     | not null, not blank, on_delete=models.CASCADE           |
-| product_size    | CharField               | Max length 2, null and blank                             |
-| quantity        | IntegerField            | not null, not blank, default=0                         |
-| lineitem_total  | DecimalField            | max_digits=6, decimal_places=2, not null, not blank, not editable |
+| Field Name        | Field Type                  | Description                                           |
+|-------------------|-----------------------------|-------------------------------------------------------|
+| id                | AutoField                   | Primary key                                           |
+| order             | ForeignKey(Order)           | Reference to the Order model (not nullable)           |
+| product           | ForeignKey(Product)         | Reference to the Product model (not nullable)         |
+| product_size      | CharField(2) (nullable)      | Size of the product (e.g., XS, S, M, L, XL)            |
+| quantity          | IntegerField                | Quantity of the product in the order (not nullable)   |
+| lineitem_total    | DecimalField(6, 2)          | Total cost of the line item (auto-generated, not editable) |
+
+
 
 ### Comment Model
 
-| Field Name   | Field Type          | Description                                        |
-|--------------|---------------------|----------------------------------------------------|
-| event        | ForeignKey(Event)  | on_delete=models.CASCADE, related_name='comments' |
-| user         | ForeignKey(UserProfile) | on_delete=models.CASCADE |
-| text         | TextField           |                                                  |
-| created_at   | DateTimeField       | auto_now_add=True                                  |
-| likes        | ManyToManyField(User) | related_name='liked_comments'                     |
+| Field Name        | Field Type                  | Description                                           |
+|-------------------|-----------------------------|-------------------------------------------------------|
+| id                | AutoField                   | Primary key                                           |
+| event             | ForeignKey(Event)           | Reference to the Event model (cascading delete)       |
+| user              | ForeignKey(UserProfile)     | Reference to the UserProfile model (cascading delete) |
+| text              | TextField                   | The content of the comment                             |
+| created_at        | DateTimeField(auto_now_add) | Date and time when the comment was created             |
+| likes             | ManyToManyField(User)        | Users who liked the comment (related_name: 'liked_comments') |
+
+### Category Model
+
+| Field Name    | Field Type          | Description                                    |
+|---------------|---------------------|------------------------------------------------|
+| id            | AutoField           | Primary key                                    |
+| name          | CharField(254)      | The name of the category                       |
+| friendly_name | CharField(254)      | A user-friendly name for the category          |
+
+### User Profile Model
+
+| Field Name             | Field Type          | Description                                        |
+|------------------------|---------------------|----------------------------------------------------|
+| id                     | AutoField           | Primary key                                        |
+| user                   | OneToOneField(User) | Reference to the associated user                   |
+| default_phone_number   | CharField(20)       | Default phone number for delivery information      |
+| default_street_address1| CharField(80)       | Default first line of street address               |
+| default_street_address2| CharField(80)       | Default second line of street address (optional)   |
+| default_town_or_city   | CharField(40)       | Default town or city for delivery information      |
+| default_county         | CharField(80)       | Default county for delivery information (optional) |
+| default_postcode       | CharField(20)       | Default postcode for delivery information          |
+| default_country        | CountryField        | Default country for delivery information (optional) |
+
 
 ## SEO & Marketing
 
